@@ -13,7 +13,7 @@ public class MemberHandler {
   static int length = 0;
 
   public static void inputAccounts() {
-    if (!available()) { //더이상 Heap메모리가 할당 안될 경우 입력 불가
+    if (!available()) { //더이상 Heap메모리가 할당안될 경우 입력불가
       System.out.println("더이상 입력할 수 없습니다.");
       return;
     }
@@ -38,7 +38,7 @@ public class MemberHandler {
     while (true) {
       System.out.println("은행을 선택하세요.");
       int num = Prompt.inputInt("1. 신한은행 2.국민은행 3.기업은행 4.하나은행 5.농협은행 \n");
-      if (num >= 1 && num <= 3) {
+      if (num >= 1 && num <= 5) {
          m.bankName = bankName[num - 1];
          break;
       } else {
@@ -65,7 +65,7 @@ public class MemberHandler {
       Member mp = findPassword(Prompt.inputString("비밀번호 : "));
       
       if (m == null) {
-        System.out.println("계좌번호를 찾을수 없습니다.");   
+        System.out.println("계좌번호를 찾을수 없습니다.");
       } else if (mp == null) {
         System.out.println("비밀번호가 다릅니다.");
       } else { 
@@ -152,7 +152,7 @@ public class MemberHandler {
   public static void viewAccount() { // 계좌정보 확인
     while (true) {
       String memberNo = Prompt.inputString("계좌번호? ");
-      boolean memberFound = false;
+      boolean accountNumberFound = false;
   
       for (int i = 0; i < length; i++) {
         Member m = members[i];
@@ -163,12 +163,12 @@ public class MemberHandler {
           System.out.printf("은행이름 : %s\n", m.bankName);
           System.out.printf("잔고 : %d\n", m.balance);
           System.out.println("-------------------");
-          memberFound = true;
+          accountNumberFound = true;
           break;
-        }
+        } 
       }
   
-      if (!memberFound) {
+      if (!accountNumberFound) {
         System.out.println("해당 계좌번호의 회원이 없습니다.");
       } else {
         break;
@@ -205,6 +205,7 @@ public class MemberHandler {
 
   public static void deleteMember() {  //계좌삭제
     while(true) {
+      printAccounts();
       int memberNo = Prompt.inputInt("번호? ");
       int deleteAccount = indexOf(memberNo);
       if (deleteAccount == -1) {
@@ -212,7 +213,7 @@ public class MemberHandler {
         continue;
         }
       for (int i = deleteAccount; i < length - 1; i++) {
-        members[i] = members[i +1];
+        members[i] = members[i + 1];
       }
       members[length--] = null;
       break;

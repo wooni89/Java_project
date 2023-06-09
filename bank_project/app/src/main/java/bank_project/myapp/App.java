@@ -13,7 +13,7 @@ public class App {
 
     while (true) {
       String menuNo = Prompt.inputString("번호를 입력하세요 > ");
-      if (menuNo.equals("7")) {
+      if (menuNo.equals("8")) {
         break;
       } else if (menuNo.equals("menu")) {
         printMenu();
@@ -29,6 +29,8 @@ public class App {
         MemberHandler.viewAccount();
       } else if (menuNo.equals("6")) { // 계좌삭제
         MemberHandler.deleteMember();
+      } else if (menuNo.equals("7")) { // 등록 회원 목록조회
+        MemberHandler.printAccounts();
       } else {
         System.out.println(menuNo);
       }
@@ -45,7 +47,8 @@ public class App {
     System.out.println("4.계좌 비밀번호 변경");
     System.out.println("5.계좌정보확인");
     System.out.println("6.계좌삭제");
-    System.out.println("7.종료");
+    System.out.println("7.등록회원 목록 조회");
+    System.out.println("8.종료");
   }
 
   static void printTitle() {
