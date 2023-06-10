@@ -13,7 +13,7 @@ public class App {
 
     while (true) {
       String menuNo = Prompt.inputString("번호를 입력하세요 > ");
-      if (menuNo.equals("8")) {
+      if (menuNo.equals("0")) {
         break;
       } else if (menuNo.equals("menu")) {
         printMenu();
@@ -48,7 +48,7 @@ public class App {
     System.out.println("5.계좌정보확인");
     System.out.println("6.계좌삭제");
     System.out.println("7.등록회원 목록 조회");
-    System.out.println("8.종료");
+    System.out.println("0.종료");
   }
 
   static void printTitle() {

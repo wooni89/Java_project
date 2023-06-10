@@ -35,6 +35,7 @@ public class MemberHandler {
       } 
       System.out.println("8자리의 '숫자'만 입력해 주세요");
     }
+
     while (true) {
       System.out.println("은행을 선택하세요.");
       int num = Prompt.inputInt("1. 신한은행 2.국민은행 3.기업은행 4.하나은행 5.농협은행 \n");
@@ -45,6 +46,8 @@ public class MemberHandler {
         System.out.println("무효한 번호 입니다.");
       }
     }
+
+    String formattedAccNum = m.accNum.replaceAll("(\\d{4})(\\d{4})", "$1-$2");
     m.balance = 0;
     m.no = userId++;
     members[length++] = m;
@@ -53,7 +56,7 @@ public class MemberHandler {
     System.out.println("-------------------");
     System.out.println("이름 : " + m.name);
     System.out.println("계좌비밀번호 : " + m.password);
-    System.out.println("계좌번호 : " + m.accNum);
+    System.out.println("계좌번호 : " + formattedAccNum);
     System.out.println("은행명 : " + m.bankName);
     System.out.println("잔고 : " + m.balance);
     System.out.println("-------------------");
@@ -144,8 +147,9 @@ public class MemberHandler {
 
     for (int i = 0; i < length; i++) {
       Member m = members[i];
+      String formattedAccNum = m.accNum.replaceAll("(\\d{4})(\\d{4})", "$1-$2");
       System.out.printf("%d, %s, %s, %s, $%d\n",
-          m.no, m.name, m.accNum, m.bankName, m.balance);
+          m.no, m.name, formattedAccNum, m.bankName, m.balance);
     }
   }
 
@@ -156,10 +160,11 @@ public class MemberHandler {
   
       for (int i = 0; i < length; i++) {
         Member m = members[i];
+        String formattedAccNum = m.accNum.replaceAll("(\\d{4})(\\d{4})", "$1-$2");
         if (m.accNum.equals(memberNo)) {
           System.out.println("-------------------");
           System.out.printf("이름 : %s\n", m.name);
-          System.out.printf("계좌번호 : %s\n", m.accNum);
+          System.out.printf("계좌번호 : %s\n", formattedAccNum);
           System.out.printf("은행이름 : %s\n", m.bankName);
           System.out.printf("잔고 : %d\n", m.balance);
           System.out.println("-------------------");
