@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'eclipse'
 }
 
 repositories {
@@ -52,4 +53,16 @@ tasks.withType(JavaCompile) {
 
     // 자바 클래스를 실행시킬 JVM의 최소 버전
     targetCompatibility = '17'
+}
+
+// eclipse 프로젝트 이름을 설정하기
+eclipse {
+    project {
+        name = "bank_project"
+    }
+    jdt {
+      sourceCompatibility = 17
+      targetCompatibility = 17
+      javaRuntimeName = "JavaSE-17"
+    }
 }
