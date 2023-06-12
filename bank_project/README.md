@@ -60,9 +60,14 @@
 
 - App.java
   - 입금 출금 기능 활성화
+  - 메뉴 UI 변경
 - MemberHandler
   - Member.java 추가하여 레퍼런스배열화
   - inputAccount(계좌개설)
     - 은행선택구분 switch문 에서 if문으로 변경
-  - 입출금시 계좌번호 및 비밀번호 입력 추가
-- Member 배열의 활용
+    - 입출금시 계좌번호 및 비밀번호 입력 추가
+- Member 클래스 추가
+  -  인스턴드 필드 생성자 추가
+  -  getter / setter 추가
+  -  스태틱 필드 및 생성자 활용
+  - 입출금을 위한 스태틱 필드 추가
