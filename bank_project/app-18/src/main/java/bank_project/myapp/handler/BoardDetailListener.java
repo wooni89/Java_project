@@ -1,0 +1,33 @@
+package bank_project.myapp.handler;
+
+import bank_project.myapp.vo.Board;
+import bank_project.util.BreadcrumbPrompt;
+import bank_project.util.List;
+
+public class BoardDetailListener extends AbstractBoardListener {
+
+  public BoardDetailListener(List<Board> list) {
+    super(list);
+  }
+
+  @Override
+  public void service(BreadcrumbPrompt prompt) {
+
+    int boardNo = prompt.inputInt("번호 ? ");
+
+    Board board = this.findBy(boardNo);
+    if (board == null) {
+      System.out.println("해당 번호의 게시글이 없습니다!");
+      return;
+    }
+
+    System.out.printf("제목 : %s\n", board.getTitle());
+    System.out.printf("내용 : %s\n", board.getContent());
+    System.out.printf("작성자 : %s\n", board.getWriter());
+    System.out.printf("작성일 : %1$tY-%1$tm-%1$td \n", board.getCreatedDate());
+    System.out.printf("조회수 : %d\n", board.getViewCount());
+    board.setViewCount(board.getViewCount() + 1);
+
+  }
+
+}
