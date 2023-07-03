@@ -121,6 +121,7 @@ public class App {
 
     } catch (Exception e) {
       System.out.println(filename + " 파일을 읽는 중 오류 발생!");
+      e.printStackTrace();
     }
   }
 
@@ -138,6 +139,7 @@ public class App {
 
     } catch (Exception e) {
       System.out.println(filename + " 파일을 저장하는 중 오류 발생!");
+      e.printStackTrace();
     }
   }
 

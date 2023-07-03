@@ -30,7 +30,7 @@ public class Member implements Serializable, CsvObject {
     this.password = password;
   }
 
-  public static Member fromCSV(String csv) {
+  public static Member fromCsv(String csv) {
 
     String[] values = csv.split(",");
     Member member = new Member();
