@@ -1,0 +1,26 @@
+[
+  {
+    "no": 2,
+    "name": "seo",
+    "password": "1111",
+    "accNum": "11111212",
+    "balance": 200000000,
+    "bankName": "국민은행"
+  },
+  {
+    "no": 3,
+    "name": "woon",
+    "password": "2222",
+    "accNum": "22221212",
+    "balance": 3000200,
+    "bankName": "하나은행"
+  },
+  {
+    "no": 4,
+    "name": "powel",
+    "password": "1234",
+    "accNum": "12341234",
+    "balance": 28000,
+    "bankName": "기업은행"
+  }
+]

@@ -1,13 +1,16 @@
 package bank_project.myapp.handler;
 
-import java.util.List;
-import bank_project.myapp.vo.Member;
+import bank_project.dao.AccountDao;
+import bank_project.myapp.vo.Account;
+import bank_project.util.ActionListener;
 import bank_project.util.BreadcrumbPrompt;
 
-public class MemberDeleteListener extends AbstractAccountListener {
+public class AccountDeleteListener implements ActionListener {
 
-  public MemberDeleteListener(List<Member> list) {
-    super(list);
+  AccountDao accountDao;
+
+  public AccountDeleteListener(AccountDao accountDao) {
+    this.accountDao = accountDao;
   }
 
   @Override
@@ -16,9 +19,9 @@ public class MemberDeleteListener extends AbstractAccountListener {
     while (true) {
       String accNum = prompt.inputString("삭제할 계좌번호를 입력하세요 : ");
       String pwd = prompt.inputString("비밀번호를 입력하세요 : ");
-      Member account = new Member(accNum, pwd);
+      Account account = accountDao.findAccountPassword(accNum, pwd);
 
-      boolean removed = this.list.remove(account);
+      boolean removed = accountDao.delete(account);
 
       if (removed) {
         System.out.println("계좌가 정상적으로 삭제되었습니다. 이용해주셔서 감사합니다.");
@@ -28,16 +31,6 @@ public class MemberDeleteListener extends AbstractAccountListener {
       break;
     }
 
-  }
-
-  protected Member findMember(String accNum, String pwd) {
-    for (int i = 0; i < this.list.size(); i++) {
-      Member member = list.get(i);
-      if (member.getAccNum().equals(accNum) && member.getPassword().equals(pwd)) {
-        return member;
-      }
-    }
-    return null;
   }
 
 }

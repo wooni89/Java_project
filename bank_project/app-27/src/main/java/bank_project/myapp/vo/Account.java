@@ -2,7 +2,7 @@ package bank_project.myapp.vo;
 
 import java.io.Serializable;
 
-public class Member implements Serializable, CsvObject {
+public class Account implements Serializable, CsvObject, AutoIncrement {
 
   private static final long serialVersionUID = 1L;
 
@@ -16,37 +16,35 @@ public class Member implements Serializable, CsvObject {
   private String bankName;
 
 
-  public Member() {
-    this.no = userId++;
-  }
+  public Account() {}
 
 
-  public Member(String accNum) {
+  public Account(String accNum) {
     this.accNum = accNum;
   }
 
-  public Member(String accNum, String password) {
+  public Account(String accNum, String password) {
     this.accNum = accNum;
     this.password = password;
   }
 
-  public static Member fromCsv(String csv) {
+  public static Account fromCsv(String csv) {
 
     String[] values = csv.split(",");
-    Member member = new Member();
-    member.setNo(Integer.parseInt(values[0]));
-    member.setName(values[1]);
-    member.setAccNum(values[2]);
-    member.setPassword(values[3]);
-    member.setBankName(values[4]);
-    member.setBalance(Integer.parseInt(values[5]));
+    Account account = new Account();
+    account.setNo(Integer.parseInt(values[0]));
+    account.setName(values[1]);
+    account.setAccNum(values[2]);
+    account.setPassword(values[3]);
+    account.setBankName(values[4]);
+    account.setBalance(Integer.parseInt(values[5]));
 
 
-    if (Member.userId <= member.getNo()) {
-      Member.userId = member.getNo() + 1;
+    if (Account.userId <= account.getNo()) {
+      Account.userId = account.getNo() + 1;
     }
 
-    return member;
+    return account;
   }
 
   @Override
@@ -55,6 +53,13 @@ public class Member implements Serializable, CsvObject {
         this.getPassword(), this.getBankName(), this.getBalance());
   }
 
+  @Override
+  public void updateKey() {
+    if (Account.userId <= this.no) {
+      Account.userId = this.no + 1;
+    }
+
+  }
 
   public boolean equals(Object obj) {
 
@@ -66,13 +71,13 @@ public class Member implements Serializable, CsvObject {
       return false;
     }
 
-    Member m = (Member) obj;
+    Account account = (Account) obj;
 
-    if (!this.getAccNum().equals(m.getAccNum())) {
+    if (!this.getAccNum().equals(account.getAccNum())) {
       return false;
     }
 
-    if (!this.getPassword().equals(m.getPassword())) {
+    if (!this.getPassword().equals(account.getPassword())) {
       return false;
     }
     return true;
