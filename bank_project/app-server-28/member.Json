@@ -1,0 +1,66 @@
+[
+  {
+    "no": 1,
+    "name": "aaaa",
+    "password": "1122",
+    "accNum": "11111212",
+    "balance": 3000200,
+    "bankName": "하나은행"
+  },
+  {
+    "no": 2,
+    "name": "bbbb",
+    "password": "2211",
+    "accNum": "22221212",
+    "balance": 3000200,
+    "bankName": "하나은행"
+  },
+  {
+    "no": 3,
+    "name": "woon",
+    "password": "2222",
+    "accNum": "22221212",
+    "balance": 3000200,
+    "bankName": "하나은행"
+  },
+  {
+    "no": 4,
+    "name": "powel",
+    "password": "1234",
+    "accNum": "12341234",
+    "balance": 28000,
+    "bankName": "기업은행"
+  },
+  {
+    "no": 5,
+    "name": "jaeun",
+    "password": "1212",
+    "accNum": "12121212",
+    "balance": 0,
+    "bankName": "국민은행"
+  },
+  {
+    "no": 6,
+    "name": "1",
+    "password": "1212",
+    "accNum": "00001111",
+    "balance": 0,
+    "bankName": "신한은행"
+  },
+  {
+    "no": 7,
+    "name": "seo",
+    "password": "0011",
+    "accNum": "00010001",
+    "balance": 30000,
+    "bankName": "기업은행"
+  },
+  {
+    "no": 8,
+    "name": "1",
+    "password": "1234",
+    "accNum": "12341212",
+    "balance": 0,
+    "bankName": "신한은행"
+  }
+]

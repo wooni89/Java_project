@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="output" path="bin/default"/>
+	<classpathentry output="bin/main" kind="src" path="src/main/java">
+		<attributes>
+			<attribute name="gradle_scope" value="main"/>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry output="bin/main" kind="src" path="src/main/resources">
+		<attributes>
+			<attribute name="gradle_scope" value="main"/>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry output="bin/test" kind="src" path="src/test/java">
+		<attributes>
+			<attribute name="gradle_scope" value="test"/>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry output="bin/test" kind="src" path="src/test/resources">
+		<attributes>
+			<attribute name="gradle_scope" value="test"/>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17/"/>
+	<classpathentry kind="src" path="/bank_project-common">
+		<attributes>
+			<attribute name="without_test_code" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/31.1-jre/c388a68bc2b17a314dfa7c769d858ada0fc32dcf/guava-31.1-jre-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.guava/guava/31.1-jre/60458f877d055d0c9114d9e1a2efb737b4bc282c/guava-31.1-jre.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/982a90132e942f302e6fe79d6e78c4bc2e998569/gson-2.10.1-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.10.1/b3add478d4382b78ea20b1671390a858002feb6c/gson-2.10.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis/3.5.13/41f1a762d65b8a5725dcab12c2ccef8348010664/mybatis-3.5.13-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis/3.5.13/3d0aa73551884a6de6ca187fb4d2db50da002be9/mybatis-3.5.13.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.projectreactor.netty/reactor-netty-http/1.1.9/daa4419ca34596569fe3179b8f45f95d7bcc7654/reactor-netty-http-1.1.9-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.projectreactor.netty/reactor-netty-http/1.1.9/408b3037133f2e8ab0f195ccd3f807026be9b860/reactor-netty-http-1.1.9.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.projectreactor.netty/reactor-netty-core/1.1.9/1114c279138866eb782a3a4451593e60839938ee/reactor-netty-core-1.1.9-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.projectreactor.netty/reactor-netty-core/1.1.9/ac39d0f75948edc07bfa36f846572fffadf65b52/reactor-netty-core-1.1.9.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.projectreactor/reactor-core/3.5.8/44b9afc5c3f7eb6a1a74d3dbd1a67ace659b466c/reactor-core-3.5.8-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.projectreactor/reactor-core/3.5.8/f5e1714dce42ec53052f3d73889fd693d774cbe1/reactor-core-3.5.8.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.4/d3cddd3497e618c6d3810ef439f13666f889abe4/reactive-streams-1.0.4-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.4/3864a1320d97d7b045f729a326e1e077661f31b7/reactive-streams-1.0.4.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1d064e61aad6c51cc77f9b59dc2cccc78e792f5a/failureaccess-1.0.1-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.guava/failureaccess/1.0.1/1dcf1de382a0bf95a3d8b0849546c88bac1292c9/failureaccess-1.0.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/b421526c5f297295adef1c886e5246c39d4ac629/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/b19b5927c2c25b6c70f093767041e641ae0b1b35/jsr305-3.0.2-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.2/25ea2e8b0c338a877313bd4672d3fe056ea78f0d/jsr305-3.0.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.12.0/10dacb8b36398debceca36cd0db5f3316967f80e/checker-qual-3.12.0-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.checkerframework/checker-qual/3.12.0/d5692f0526415fcc6de94bb5bfbd3afd9dd3b3e5/checker-qual-3.12.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.11.0/d060e42b6aa896a3abe2ec612e1cf8cc307f8a49/error_prone_annotations-2.11.0-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.errorprone/error_prone_annotations/2.11.0/c5a0ace696d3f8b1c1d8cc036d8c03cc0cbe6b69/error_prone_annotations-2.11.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.3/d26c56180205cbb50447c3eca98ecb617cf9f58b/j2objc-annotations-1.3-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.j2objc/j2objc-annotations/1.3/ba035118bc8bac37d7eff77700720999acd9986d/j2objc-annotations-1.3.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.mysql/mysql-connector-j/8.0.33/3e86363e438eca05a3c60d26a48caa64d8ceeab/mysql-connector-j-8.0.33-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.mysql/mysql-connector-j/8.0.33/9e64d997873abc4318620264703d3fdb6b02dd5a/mysql-connector-j-8.0.33.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns-native-macos/4.1.94.Final/902cf7b70e993c0655ef6fd7f8a9f90d295e810d/netty-resolver-dns-native-macos-4.1.94.Final-osx-x86_64.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns-classes-macos/4.1.94.Final/85e9ad3bafb0f45db596ab4e606d52f0633c7334/netty-resolver-dns-classes-macos-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns-classes-macos/4.1.94.Final/a4a7e28d172b56f21626b739c30133a19ba61556/netty-resolver-dns-classes-macos-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns/4.1.94.Final/4005a1db31f0b398b0fee4ed816c25ecbf41bc3f/netty-resolver-dns-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver-dns/4.1.94.Final/25bbe90e10685ce63c32bd0db56574cffffa28de/netty-resolver-dns-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler-proxy/4.1.94.Final/e39a11edae74f1ce6b5b3ae745b2a0fe38efdeae/netty-handler-proxy-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler-proxy/4.1.94.Final/26ba9d30b8f7b095155b9ac63378d6d9386d85c3/netty-handler-proxy-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http2/4.1.94.Final/2e2bd7454faa46a1f4e614ff97cff471d4cf528/netty-codec-http2-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http2/4.1.94.Final/f651595784d6cca4cbca6a8ad74c48fceed6cea8/netty-codec-http2-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.1.94.Final/244a8595c41a249e3f04d4dc2324a0d04c2a5b1e/netty-codec-http-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-http/4.1.94.Final/9e5404764092c1f6305ad5719078f46ab228d587/netty-codec-http-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.1.94.Final/3f17d4591e91067cb14760afbe01b138edf7f166/netty-handler-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-handler/4.1.94.Final/cd9121ce24d6d3f2898946d04b0ef3ec548b00b4/netty-handler-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.1.94.Final/97fa08f27bc637c6be79d54ba39b55f235d3c04e/netty-transport-native-epoll-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-epoll/4.1.94.Final/6e60c2cd22dc8856a33e5465ee4df19f287223dc/netty-transport-native-epoll-4.1.94.Final-linux-x86_64.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java/3.21.9/ba3f8d6e858362891791bf00c62fc671849fbc4d/protobuf-java-3.21.9-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.google.protobuf/protobuf-java/3.21.9/ed1240d9231044ce6ccf1978512f6e44416bb7e7/protobuf-java-3.21.9.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.1.94.Final/145c863e178e2f7f58fd523ae04ac2a22eedefcd/netty-transport-classes-epoll-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-classes-epoll/4.1.94.Final/240e36cd5c2ffaf655913f8857f2d58b26394679/netty-transport-classes-epoll-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.1.94.Final/a9b70a3af1cc41b4f0785e5802ef715c7577606e/netty-transport-native-unix-common-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport-native-unix-common/4.1.94.Final/3fa5f9d04b6b782d869d6e0657d896eeadca5866/netty-transport-native-unix-common-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-socks/4.1.94.Final/5a0ed38e0fe364214524054d312df0493d6bb01c/netty-codec-socks-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-socks/4.1.94.Final/b9192c7cda295d75f236a13a0b1f5a008f05d516/netty-codec-socks-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-dns/4.1.94.Final/d04495452d1f9f3d89672c896f74a62119b51e69/netty-codec-dns-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec-dns/4.1.94.Final/9180660dc8479e1594b60b02fc27404af0ea43a6/netty-codec-dns-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.1.94.Final/e5ff33a2bffd8a11c51868a583c961131f952082/netty-codec-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-codec/4.1.94.Final/c70ef20ca338558147887df60f46341bc47f6900/netty-codec-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.1.94.Final/7f2b35f9d20a83b523ea55a8fa7029d3b75e687d/netty-transport-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-transport/4.1.94.Final/ec783a737f96991a87b1d5794e2f9eb2024d708a/netty-transport-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.1.94.Final/3152219c53e87cf6daaf2db10ab8d7ddb4243179/netty-resolver-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-resolver/4.1.94.Final/e96f649e8e9dcb29a1f8e95328b99c9eb6cf76c2/netty-resolver-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.1.94.Final/a0f28c0e1632faf3861c28d40cbf135d00816947/netty-buffer-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-buffer/4.1.94.Final/eec248b26f16e888688e5bb37b7eeda76b78d2f7/netty-buffer-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.1.94.Final/f275fec008c08240ac40fcf396e4bb2ddfe89820/netty-common-4.1.94.Final-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/io.netty/netty-common/4.1.94.Final/ad4ecf779ebc794cd351f57792f56ea01387b868/netty-common-4.1.94.Final.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.15.2/7458734de3b894cff3f3744ab11ff79b635c80e2/jackson-annotations-2.15.2-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.15.2/4724a65ac8e8d156a24898d50fd5dbd3642870b8/jackson-annotations-2.15.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.15.2/4d3e4ff17d2cda69f8fd692694c304ff38a75823/jackson-core-2.15.2-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.15.2/a6fe1836469a69b3ff66037c324d75fc66ef137c/jackson-core-2.15.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.15.2/32d4d520f3e46e7b2c2d4d863d8f2f381af4fa6/jackson-databind-2.15.2-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.15.2/9353b021f10c307c00328f52090de2bdb4b6ff9c/jackson-databind-2.15.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.9.1/f48e6a3bc9ac5acdde88951f83beb44adc78c8c5/junit-jupiter-params-5.9.1-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-params/5.9.1/ffcd1013edaeee112be11fcddeb38882d79238de/junit-jupiter-params-5.9.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.9.1/ba8516b330a32b4957cdc6ad0cd1a594ec154fd2/junit-jupiter-api-5.9.1-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-api/5.9.1/7bb53fbc0173e9f6a9d21d58297af94b1f2f9ce1/junit-jupiter-api-5.9.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.9.1/5d2f1078b36f69b0cbacc1efdbf073517c0c7d33/junit-platform-commons-1.9.1-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-commons/1.9.1/3145f821b5cd10abcdc5f925baa5fffa6f1b628f/junit-platform-commons-1.9.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.9.1/5fd01c33132462aab3905cb74bd1097a713ab91a/junit-jupiter-5.9.1-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter/5.9.1/9274d3757e224bc02eae367bd481062a263c150b/junit-jupiter-5.9.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.2.0/41d55b3c2254de9837b4ec8923cbd371b8a7eab5/opentest4j-1.2.0-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.opentest4j/opentest4j/1.2.0/28c11eb91f9b6d8e200631d46e20a7f407f2a046/opentest4j-1.2.0.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/e0787a997746ac32639e0bf3cb27af8dce8a3428/apiguardian-api-1.1.2-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.apiguardian/apiguardian-api/1.1.2/a231e0d844d2721b0fa1b238006d15c6ded6842a/apiguardian-api-1.1.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value=""/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.9.1/bc082b8e8a1f40d6846fccb59867c6524bf08155/junit-jupiter-engine-5.9.1-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.jupiter/junit-jupiter-engine/5.9.1/1bf771097bde296c3ab174861954e8aafaaf2e94/junit-jupiter-engine-5.9.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.9.1/bda902e43fe1f62674224452defd31f4c251e29d/junit-platform-engine-1.9.1-sources.jar" kind="lib" path="/Users/woon/.gradle/caches/modules-2/files-2.1/org.junit.platform/junit-platform-engine/1.9.1/83591e5089d6cea5f324aa3ecca9b19d5a275803/junit-platform-engine-1.9.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="test"/>
+			<attribute name="test" value="true"/>
+		</attributes>
+	</classpathentry>
+</classpath>

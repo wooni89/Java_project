@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bank_project.myapp.dao.AccountDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="account" id="accountMap">
+    <id     column="account_no"  property="no"/>
+    <result column="name"         property="name"/>
+    <result column="account_number" property="accNum"/>
+    <result column="password"     property="password"/>
+    <result column="bank_name" property="bankName"/>
+    <result column="balance"   property="balance"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="account">
+    insert into myapp_account(name, account_number, password, bank_name, balance)
+    values(#{name},#{accNum},sha1(#{password}),#{bankName},#{balance})
+  </insert>
+  
+  <select id="findAll" resultMap="accountMap">
+    select
+     account_no,
+     name,
+     account_number,
+     password,
+     bank_name,
+     balance
+    from
+      myapp_account
+    order by
+      account_no
+  </select>
+  
+  <select id="findAccount" parameterType="account" resultMap="accountMap">
+    select 
+      account_no,
+      name,
+      account_number,
+      password,
+      bank_name,
+      balance
+    from
+      myapp_account
+    where
+      account_number=#{accNum}
+  </select>
+  
+  <select id="findAccountPassword" parameterType="account" resultMap="accountMap">
+	   select 
+	     account_no,
+	     name,
+	     account_number,
+	     password,
+	     bank_name,
+	     balance
+	   from
+	     myapp_account
+	   where
+	     account_number=#{accNum}
+	     and password=sha1(#{password})
+  </select>
+  
+  <update id="update" parameterType="account">
+    update myapp_account set
+      name=#{name},
+      password=sha1(#{password})
+    where 
+     account_number=#{accNum}
+  </update>
+  
+  <delete id="delete" parameterType="account">
+    delete from myapp_account
+    where 
+      account_number=#{accNum}
+  </delete>
+  
+  <update id="deposit" parameterType="account">
+    update myapp_account set
+      balance = +#{balance}
+    where 
+     account_number=#{accNum}
+  </update>
+  
+  <update id="withraw" parameterType="account">
+    update myapp_account set
+      balance = #{balance}-
+    where 
+     account_number=#{accNum}
+  </update>
+  
+  <update id="subtractBalance" parameterType="account">
+    UPDATE myapp_account SET
+      balance = -#{balance}
+    WHERE
+     account_number = #{accNum}
+  </update>
+
+  <update id="addBalance" parameterType="account">
+    UPDATE myapp_account SET 
+      balance = +#{balance}
+    WHERE account_number = #{accNum}
+  </update>
+  
+  
+</mapper>

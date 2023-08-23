@@ -240,5 +240,82 @@
 - XxxListener에서 데이터를 조작하는 코드를 캡슐화하여 별도의 클래스로 분리
 - 인터페이스로 DAO 객체 사용법을 정의
 
+### JSON 형식으로 입출력하기
 
-잔디4
+- JSON 형식으로 데이터를 읽고 쓰는 법
+- Gson 라이브러리 사용법
+
+## 28. 네트워킹을 이용하여 데이터 공유하기 : Client/Server 아키텍처로 전환
+
+- 네트워크 프로그래밍
+  - Client와 Server
+  - 프로토콜에 따라 애플리케이션 간에 데이터를 주고 받기
+
+## 29. Reflection API를 활용하여 DAO 메서드 호출을 자동화하기
+
+- DAO 프록시 객체를 자동 생성
+- java.lang.reflect.Proxy 클래스 사용
+- 서버의 DAO 메서드 호출을 자동화 
+
+## 30. 여러 클라이언트의 요청을 순차적으로 처리하기: Stateful 방식
+
+- 서버앱 예외처리 적용
+- 클라이언트 요청을 순차적으로 처리하는 방법 적용
+
+## 31. 여러 클라이언트의 요청을 순차적으로 처리하기: Stateless 방식
+
+- Stateless 방식으로 통신하는 방법적용
+
+## 32. 여러 클라이언트 요청을 동시에 처리하기: Thread 적용
+
+- ServerApp에 Thread적용
+- 스레드 재사용하기 : 스레드풀(thread pool) 구현
+  - Pooling 기법을 활용하여 스레드를 재사용하는 방법
+  - GoF의 FlyWeight 디자인 패턴(풀링 기법)을 적용하여 스레드풀을 구현하는 방법
+
+## 33. 스레드 재사용하기 : 자바에서 제공하는 스레드풀(thread pool) 사용
+
+- Excutors/ExcutorService 적용
+
+## 34. DBMS 도입
+
+- DBMS와 연동하여 작업하는 DAO 구현
+
+## 35. SQL 삽입공격 차단
+
+- PreparedStatement 적용
+
+## 36. 로그인 적용
+
+- 로그인기능 구현
+
+## 37. Application Server 아키텍터로 전환
+
+- 애플리케이션 서버 아키텍처의 특징과 구현
+- Executor를 이용하여 스레드를 풀링
+
+## 38.Mybatis SQL-mapper 프레임워크 사용
+
+- mybatis 프레임워크의 구동 원리 및 사용법
+- GoF의 Proxy 패턴을 이용하여 SqlSessionFactory 객체의 기능을 변경
+
+## 39. 리스너 실행에 Facade 패턴 적용
+
+- GoF의 Facade 패턴의 동작원리 이해와 적용
+- ActionListener 실행에 Facade 객체를 사용
+
+## 40. IoC 컨테이너 적용
+
+- IoC 컨테이너의 구동 원리와 구현
+- 리스너 객체를 IoC 컨테이너로 관리
+
+## 41. 웹 애플리케이션 서버 구조로 전환하기 - 웹 기술 도입
+
+- Netty, Reactor 라이브러리를 사용하여 웹서버를 구축
+- 웹브라우저를 이용하여 클라이언트를 구축
+
+## 42. 파일 업로드 다루기 - multipart/form-data POST 요청 파라미터 인코딩
+
+- 네이버클라우드 mysql DBMS 사용
+- apache.org의 라이브러리를 이용하여 multipart/form-data 파라미터 사용
+- Servlet API 사용
