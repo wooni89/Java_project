@@ -1,14 +1,15 @@
 package bank_project.myapp.handler;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
+import bank_project.myapp.vo.Account;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bank_project.myapp.vo.Account;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet("/account/list")
 public class AccountListServlet extends HttpServlet {
@@ -30,11 +31,11 @@ public class AccountListServlet extends HttpServlet {
     out.println("<body>");
     out.println("<h1>계좌 목록</h1>");
     out.println("<div style='margin:5px;'>");
-    out.println("<a href='/account/add'>계좌 개설</a>");
+    out.println("<a href='/account/form.html'>계좌 개설</a>");
     out.println("</div>");
     out.println("<table border='1'>");
     out.println("<thead>");
-    out.println("  <tr><th>번호</th> <th>이름</th> <th>계좌번호</th> <th>은행명</th> <th>계좌잔액</th></tr>");
+    out.println("  <tr> <th>번호</th> <th>계좌번호</th> <th>이름</th> <th>계좌잔액</th></tr>");
     out.println("</thead>");
 
     List<Account> list = InitServlet.accountDao.findAll();
@@ -42,16 +43,14 @@ public class AccountListServlet extends HttpServlet {
     out.println("<tbody>");
     for (Account account : list) {
       out.printf("<tr>"
-          + " <td>%d</td>"
           + " <td>%s</td>"
           + " <td><a href='/account/detail?accNum=%s'>%s</a></td>"
           + " <td>%s</td>"
           + " <td>%s</td></tr>\n",
           account.getNo(),
-          account.getName(),
           account.getAccNum(),
           account.getAccNum(),
-          account.getBankName(),
+          account.getOwner().getName(),
           account.getBalance());
     }
 

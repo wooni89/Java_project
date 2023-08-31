@@ -1,9 +1,10 @@
 package bank_project.myapp.dao;
 
-import java.util.List;
+import bank_project.myapp.vo.Account;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import bank_project.myapp.vo.Account;
+
+import java.util.List;
 
 public class MySQLAccountDao implements AccountDao {
 
@@ -26,15 +27,22 @@ public class MySQLAccountDao implements AccountDao {
   }
 
   @Override
-  public Account findAccount(Account account) {
+  public Account findAccount(String account) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     return sqlSession.selectOne("bank_project.myapp.dao.AccountDao.findAccount", account);
   }
 
   @Override
-  public Account findAccountPassword(Account account) {
+  public Account findByAccountAndOwner(int customer) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
-    return sqlSession.selectOne("bank_project.myapp.dao.AccountDao.findAccountPassword", account);
+    return sqlSession.selectOne("bank_project.myapp.dao.AccountDao.findByAccountAndOwner", customer);
+  }
+
+  @Override
+  public boolean findAccountAndPassword(Account account) {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    Integer count = sqlSession.selectOne("bank_project.myapp.dao.AccountDao.findAccountAndPassword", account);
+    return count != null && count > 0; // 계좌와 비밀번호 일치 여부 확인 후 true 또는 false 반환
   }
 
   @Override
@@ -52,28 +60,15 @@ public class MySQLAccountDao implements AccountDao {
   }
 
   @Override
+  public String findMaxAccNum() {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    return sqlSession.selectOne("bank_project.myapp.dao.AccountDao.findMaxAccNum");
+  }
+
+  @Override
   public Account deposit(Account account) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
     sqlSession.update("bank_project.myapp.dao.AccountDao.deposit", account);
     return account;
-}
-
-  @Override
-  public Account withraw(Account account) {
-    SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    sqlSession.update("bank_project.myapp.dao.AccountDao.withraw", account);
-    return account;
   }
-
-  @Override
-  public Account transfer(Account account) {
-    SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    sqlSession.update("bank_project.myapp.dao.AccountDao.subtractBalance", account);
-    sqlSession.update("bank_project.myapp.dao.AccountDao.addBalance", account);
-    return account;
-  }
-
-
-
-
 }

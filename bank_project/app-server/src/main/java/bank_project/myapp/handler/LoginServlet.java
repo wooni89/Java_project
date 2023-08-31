@@ -1,13 +1,14 @@
 package bank_project.myapp.handler;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import bank_project.myapp.vo.Customer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bank_project.myapp.vo.Customer;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/auth/login")
 public class LoginServlet extends HttpServlet {
@@ -17,14 +18,13 @@ public class LoginServlet extends HttpServlet {
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    
+
     Customer customer = new Customer();
     customer.setEmail(request.getParameter("email"));
     customer.setPassword(request.getParameter("password"));
 
-    Customer loginUser = InitServlet.customerDao.findBy(customer);
+    Customer loginUser = InitServlet.customerDao.findByEmailAndPassword(customer);
     if (loginUser != null) {
-      // 로그인 정보를 다른 요청에서도 사용할 있도록 세션 보관소에 담아 둔다.
       request.getSession().setAttribute("loginUser", loginUser);
       response.sendRedirect("/");
       return;

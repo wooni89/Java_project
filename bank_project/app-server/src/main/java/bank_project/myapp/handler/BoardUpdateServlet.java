@@ -1,24 +1,22 @@
 package bank_project.myapp.handler;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import bank_project.myapp.vo.AttachedFile;
 import bank_project.myapp.vo.Board;
 import bank_project.myapp.vo.Customer;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
 @WebServlet("/board/update")
+@MultipartConfig(maxFileSize = 1024 * 1024 * 10)
 public class BoardUpdateServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
@@ -33,6 +31,26 @@ public class BoardUpdateServlet extends HttpServlet {
       return;
     }
 
+    try {
+      Board board = new Board();
+      board.setWriter(loginUser);
+      board.setTitle(request.getParameter("title"));
+      board.setContent(request.getParameter("content"));
+      board.setCategory(Integer.parseInt(request.getParameter("category")));
+
+      ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
+
+      for (Part part : request.getParts()) {
+        if (part.getName().equals("files") && part.getSize() > 0) {
+          String uploadFileUrl =
+                  InitServlet.ncpObjectStorageService.uploadFile("bankdb-service-1", "board/", part);
+          AttachedFile attachedFile = new AttachedFile();
+          attachedFile.setFilePath(uploadFileUrl);
+          attachedFiles.add(attachedFile);
+        }
+      }
+      board.setAttachedFiles(attachedFiles);
+
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
     out.println("<!DOCTYPE html>");
@@ -44,55 +62,27 @@ public class BoardUpdateServlet extends HttpServlet {
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>게시글 변경</h1>");
-    
-    try {
-      List<FileItem> parts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 
-      String uploadDir = request.getServletContext().getRealPath("/upload/board/");
-      ArrayList<AttachedFile> attachedFiles = new ArrayList<>();
-
-      Board board = new Board();
-      board.setWriter(loginUser);
-
-      for (FileItem part : parts) {
-        if (part.isFormField()) {
-          if (part.getFieldName().equals("title")) {
-            board.setTitle(part.getString("UTF-8"));
-          } else if (part.getFieldName().equals("content")) {
-            board.setContent(part.getString("UTF-8"));
-          } else if (part.getFieldName().equals("category")) {
-            board.setCategory(Integer.parseInt(part.getString("UTF-8")));
-          } else if (part.getFieldName().equals("no")) {
-            board.setNo(Integer.parseInt(part.getString("UTF-8")));
-          }
-        } else {
-          String filename = UUID.randomUUID().toString();
-          part.write(new File(uploadDir, filename));
-          AttachedFile attachedFile = new AttachedFile();
-          attachedFile.setFilePath(filename);
-          attachedFiles.add(attachedFile);
+      out.println("<html>");
+      try {
+        InitServlet.boardDao.insert(board);
+        if (attachedFiles.size() > 0) {
+          InitServlet.boardDao.insertFiles(board);
         }
-      }
-      board.setAttachedFiles(attachedFiles);
 
-      if (InitServlet.boardDao.update(board) == 0) {
-        out.println("<p>게시글이 없거나 변경 권한이 없습니다.</p>");
-      } else {
-        // 게시글을 정상적으로 변경했으면, 그 게시글의 첨부파일을 추가한다.
-        int count = InitServlet.boardDao.insertFiles(board);
-        System.out.println(count);
+        InitServlet.sqlSessionFactory.openSession(false).commit();
+        out.println("<p>등록 성공입니다!</p>");
 
-        out.println("<p>변경했습니다!</p>");
-        response.setHeader("refresh", "1;url=/board/list?category=" + board.getCategory());
+      } catch (Exception e) {
+        InitServlet.sqlSessionFactory.openSession(false).rollback();
+        out.println("<p>등록 실패입니다!</p>");
+        e.printStackTrace();
       }
-      InitServlet.sqlSessionFactory.openSession(false).commit();
+      out.println("</body>");
+      out.println("</html>");
 
     } catch (Exception e) {
-      InitServlet.sqlSessionFactory.openSession(false).rollback();
-      out.println("<p>게시글 변경 실패입니다!</p>");
-      e.printStackTrace();
+      throw new ServletException(e);
     }
-    out.println("</body>");
-    out.println("</html>");
   }
 }

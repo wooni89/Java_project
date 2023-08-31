@@ -1,13 +1,14 @@
 package bank_project.myapp.handler;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import bank_project.myapp.vo.Customer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bank_project.myapp.vo.Customer;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/customer/update")
 public class CustomerUpdateServlet extends HttpServlet {
@@ -21,8 +22,10 @@ public class CustomerUpdateServlet extends HttpServlet {
     Customer customer = new Customer();
     customer.setName(request.getParameter("name"));
     customer.setEmail(request.getParameter("email"));
+    customer.setGender(request.getParameter("gender").charAt(0));
     customer.setPassword(request.getParameter("password"));
-    customer.setPhoneNumber(request.getParameter("phoneNumber"));
+    customer.setAddress(request.getParameter("address"));
+    customer.setCreditRating(Integer.parseInt(request.getParameter("creditRating")));
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -35,7 +38,6 @@ public class CustomerUpdateServlet extends HttpServlet {
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>회원 변경</h1>");
-
 
     try {
       if (InitServlet.customerDao.update(customer) == null) {

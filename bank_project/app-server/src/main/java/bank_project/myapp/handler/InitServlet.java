@@ -1,18 +1,16 @@
 package bank_project.myapp.handler;
 
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
+import bank_project.myapp.dao.*;
+import bank_project.util.NcpConfig;
+import bank_project.util.NcpObjectStorageService;
+import bank_project.util.SqlSessionFactoryProxy;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import bank_project.myapp.dao.AccountDao;
-import bank_project.myapp.dao.BoardDao;
-import bank_project.myapp.dao.CustomerDao;
-import bank_project.myapp.dao.MySQLAccountDao;
-import bank_project.myapp.dao.MySQLBoardDao;
-import bank_project.myapp.dao.MySQLCustomerDao;
-import bank_project.util.SqlSessionFactoryProxy;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 
 @WebServlet(
     value="/init",
@@ -26,6 +24,8 @@ public class InitServlet extends HttpServlet {
   public static BoardDao boardDao;
   public static CustomerDao customerDao;
   public static AccountDao accountDao;
+  public static TransactionDao transactionDao;
+  public static NcpObjectStorageService ncpObjectStorageService;
 
   @Override
   public void init() throws ServletException {
@@ -39,6 +39,8 @@ public class InitServlet extends HttpServlet {
       boardDao = new MySQLBoardDao(sqlSessionFactory);
       customerDao = new MySQLCustomerDao(sqlSessionFactory);
       accountDao = new MySQLAccountDao(sqlSessionFactory);
+      transactionDao = new MySQLTransactionDao(sqlSessionFactory);
+      ncpObjectStorageService = new NcpObjectStorageService(new NcpConfig());
 
     } catch (Exception e) {
       System.out.println("InitServlet.init() 실행 중 오류 발생!");

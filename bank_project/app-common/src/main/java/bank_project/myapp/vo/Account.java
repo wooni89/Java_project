@@ -4,98 +4,86 @@ import java.io.Serializable;
 
 public class Account implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public static int userId = 1;
+    private int no;
+    private Customer owner;
+    private String password;
+    private String accNum;
+    private int balance;
 
-  private int no;
-  private String name;
-  private String password;
-  private String accNum;
-  private int balance;
-  private String bankName;
-
-
-  public boolean equals(Object obj) {
-
-    if (obj == null) {
-      return false;
+    @Override
+    public String toString() {
+        return "Account{" +
+                "no=" + no +
+                ", owner=" + owner +
+                ", password='" + password + '\'' +
+                ", accNum='" + accNum + '\'' +
+                ", balance=" + balance +
+                '}';
     }
 
-    if (this.getClass() != obj.getClass()) {
-      return false;
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        Account other = (Account) obj;
+        return no == other.no;
     }
 
-    Account account = (Account) obj;
-
-    if (!this.getAccNum().equals(account.getAccNum())) {
-      return false;
+    public int getNo() {
+        return no;
     }
 
-    if (!this.getPassword().equals(account.getPassword())) {
-      return false;
+    public void setNo(int no) {
+        this.no = no;
     }
-    return true;
 
-  }
+    public Customer getOwner() {
+        return owner;
+    }
 
-  public int getNo() {
-    return no;
-  }
+    public void setOwner(Customer owner) {
+        this.owner = owner;
+    }
 
-  public void setNo(int no) {
-    this.no = no;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public String getAccNum() {
+        return accNum;
+    }
 
-  public String getPassword() {
-    return password;
-  }
+    public void setAccNum(String accNum) {
+        this.accNum = accNum;
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public int getBalance() {
+        return balance;
+    }
 
-  public String getAccNum() {
-    return accNum;
-  }
+    public void getBalancePlus(int plus) {
 
-  public void setAccNum(String accNum) {
-    this.accNum = accNum;
-  }
+        this.balance += plus;
+    }
 
-  public int getBalance() {
-    return balance;
-  }
+    public void getBalanceMinus(int minus) {
+        this.balance -= minus;
+    }
 
-  public void getBalancePlus(int plus) {
-
-    this.balance += plus;
-  }
-
-  public void getBalanceMinus(int minus) {
-    this.balance -= minus;
-  }
-
-  public void setBalance(int balance) {
-    this.balance = balance;
-  }
-
-  public String getBankName() {
-    return bankName;
-  }
-
-  public void setBankName(String bankName) {
-    this.bankName = bankName;
-  }
-
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 
 }
 

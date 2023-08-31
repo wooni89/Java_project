@@ -1,13 +1,15 @@
 package bank_project.myapp.handler;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import bank_project.myapp.vo.Account;
+import bank_project.myapp.vo.Customer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bank_project.myapp.vo.Account;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/account/add")
 public class AccountAddServlet extends HttpServlet {
@@ -16,13 +18,19 @@ public class AccountAddServlet extends HttpServlet {
  
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws ServletException, IOException {
+          throws ServletException, IOException {
+
+    Customer loginUser = (Customer) request.getSession().getAttribute("loginUser");
+
+    if (loginUser == null) {
+      response.sendRedirect("/auth/form.html");
+      return;
+    }
 
     Account account = new Account(); // 입력데이터 배열로 저장
-    account.setName(request.getParameter("name"));
-    account.setAccNum(request.getParameter("accNum"));
+    account.setOwner(loginUser);
+    account.setAccNum(generateAccountNumber()); // Here we generate a new account number.
     account.setPassword(request.getParameter("password"));
-    account.setBankName(request.getParameter("bankName"));
     account.setBalance(0);
 
     response.setContentType("text/html;charset=UTF-8");
@@ -48,5 +56,21 @@ public class AccountAddServlet extends HttpServlet {
       throw new RuntimeException(e);
     }
 
+  }
+
+  private String generateAccountNumber() {
+    try {
+
+      String maxAccNum = InitServlet.accountDao.findMaxAccNum();
+
+      if (maxAccNum == null) {
+        return "11100001";
+      } else {
+        int numberPart = Integer.parseInt(maxAccNum.substring(3));
+        return "111" + String.format("%05d", numberPart + 1);
+      }
+    } catch (Exception e) {
+      throw new RuntimeException("새 계좌를 발급할 수 없습니다.", e);
+    }
   }
 }

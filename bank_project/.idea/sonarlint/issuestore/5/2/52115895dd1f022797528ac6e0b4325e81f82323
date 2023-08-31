@@ -1,0 +1,5 @@
+
+r	java:S117<"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê«ÇÕøÿÿÿÿ8Şèùö£1
+n	java:S116	"RRename this field "acc_num" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î£ñ8ãèùö£1
+o	java:S1008"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î«¤‚úÿÿÿÿ8æèùö£1
+o	java:S100<"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê«ÇÕøÿÿÿÿ8æèùö£1

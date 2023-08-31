@@ -1,7 +1,8 @@
 package bank_project.myapp.dao;
 
-import java.util.List;
 import bank_project.myapp.vo.Account;
+
+import java.util.List;
 
 public interface AccountDao {
 
@@ -9,18 +10,18 @@ public interface AccountDao {
 
   List<Account> findAll();
 
-  Account findAccount(Account Account);
+  Account findAccount(String accNum);
 
-  Account findAccountPassword(Account account);
+  boolean findAccountAndPassword(Account account);
+
+  Account findByAccountAndOwner(int account);
+
+  String findMaxAccNum();
 
   Account update(Account account);
 
   Account delete(Account account);
-  
+
   Account deposit(Account account);
-  
-  Account withraw(Account account);
-  
-  Account transfer(Account account);
 
 }

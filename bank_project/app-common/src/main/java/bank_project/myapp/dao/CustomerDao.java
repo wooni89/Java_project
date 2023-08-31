@@ -1,7 +1,8 @@
 package bank_project.myapp.dao;
 
-import java.util.List;
 import bank_project.myapp.vo.Customer;
+
+import java.util.List;
 
 public interface CustomerDao {
 
@@ -9,11 +10,13 @@ public interface CustomerDao {
   
   List<Customer> findAll();
   
-  Customer findBy(Customer customer);
+  Customer findBy(String customer);
+
+  Customer findByEmailAndPassword(Customer customer);
   
   Customer update(Customer customer);
   
-  Customer delete(Customer customer);
+  int delete(String customer);
   
 }
 

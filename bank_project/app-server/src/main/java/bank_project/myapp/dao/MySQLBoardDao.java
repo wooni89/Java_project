@@ -1,12 +1,13 @@
 package bank_project.myapp.dao;
 
+import bank_project.myapp.vo.AttachedFile;
+import bank_project.myapp.vo.Board;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
-import bank_project.myapp.vo.AttachedFile;
-import bank_project.myapp.vo.Board;
 
 public class MySQLBoardDao implements BoardDao {
   
@@ -20,13 +21,12 @@ public class MySQLBoardDao implements BoardDao {
   public void insert(Board board) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
     sqlSession.insert("bank_project.myapp.dao.BoardDao.insert", board);
-    
   }
 
   @Override
   public List<Board> findAll(int category) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    return sqlSession.selectList("bitcamp.myapp.dao.BoardDao.findAll", category);
+    return sqlSession.selectList("bank_project.myapp.dao.BoardDao.findAll", category);
   }
 
   @Override
@@ -37,7 +37,7 @@ public class MySQLBoardDao implements BoardDao {
     paramMap.put("categoryNo", category);
     paramMap.put("boardNo", no);
 
-    return sqlSession.selectOne("bitcamp.myapp.dao.BoardDao.findBy", paramMap);
+    return sqlSession.selectOne("bank_project.myapp.dao.BoardDao.findBy", paramMap);
   }
 
   @Override
@@ -49,7 +49,7 @@ public class MySQLBoardDao implements BoardDao {
   @Override
   public int updateCount(Board board) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    return sqlSession.update("bitcamp.myapp.dao.BoardDao.updateCount", board);
+    return sqlSession.update("bank_project.myapp.dao.BoardDao.updateCount", board);
   }
 
   @Override
@@ -61,19 +61,19 @@ public class MySQLBoardDao implements BoardDao {
   @Override
   public int insertFiles(Board board) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    return sqlSession.insert("bitcamp.myapp.dao.BoardDao.insertFiles", board);
+    return sqlSession.insert("bank_project.myapp.dao.BoardDao.insertFiles", board);
   }
 
   @Override
   public AttachedFile findFileBy(int no) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    return sqlSession.selectOne("bitcamp.myapp.dao.BoardDao.findFileBy", no);
+    return sqlSession.selectOne("bank_project.myapp.dao.BoardDao.findFileBy", no);
   }
 
   @Override
   public int deleteFile(int no) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    return sqlSession.delete("bitcamp.myapp.dao.BoardDao.deleteFile", no);
+    return sqlSession.delete("bank_project.myapp.dao.BoardDao.deleteFile", no);
   }
 
 }

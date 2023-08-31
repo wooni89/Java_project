@@ -1,13 +1,14 @@
 package bank_project.myapp.handler;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import bank_project.myapp.vo.Account;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bank_project.myapp.vo.Account;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/account/detail")
 public class AccountDetailServlet extends HttpServlet {
@@ -18,10 +19,7 @@ public class AccountDetailServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    Account tempAccount = new Account();
-    tempAccount.setAccNum(request.getParameter("accNum"));
-    tempAccount.setPassword(request.getParameter("password"));
-    Account account = InitServlet.accountDao.findAccountPassword(tempAccount);
+    Account account = InitServlet.accountDao.findAccount(request.getParameter("accNum"));
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -35,7 +33,7 @@ public class AccountDetailServlet extends HttpServlet {
     out.println("<h1>계좌 상세정보</h1>");
 
     if (account == null) {
-      out.println("<p>해당 회원이 없습니다!</p>");
+      out.println("<p>해당 계좌가 없습니다!</p>");
       return;
     }
 
@@ -44,18 +42,10 @@ public class AccountDetailServlet extends HttpServlet {
     out.printf("<tr><th style='width:120px;'>번호</th>"
         + " <td style='width:300px;'><input type='text' name='no' value='%d' readonly></td></tr>\n",
         account.getNo());
-    out.printf("<tr><th>이름</th>" + " <td><input type='text' name='name' value='%s'></td></tr>\n",
-        account.getName());
-    out.printf(
-        "<tr><th>계좌번호</th>" + " <td><input type='text' name='accNum' value='%s'></td></tr>\n",
-        account.getAccNum());
-    out.println("<tr><th>암호</th>" + " <td><input type='text' name='password'></td></tr>");
-    out.printf(
-        "<tr><th>은행명</th>" + " <td><input type='text' name='bankName' value='%s'></td></tr>\n",
-        account.getBankName());
-    out.printf(
-        "<tr><th>계좌잔액</th>" + " <td><input type='int' name='balance' value='%d'></td></tr>\n",
-        account.getBalance());
+    out.printf("<tr><th>이름</th> <td>%s</td></tr>\n", account.getOwner().getName());
+    out.printf("<tr><th>계좌번호</th> <td pattern='[0-9]{3}-[0-9]{2}-[0-9]{3}'>%s</td></tr>\n", account.getAccNum());
+    out.println("<tr><th>암호</th> <td><input type='password' name='password'></td></tr>");
+    out.printf("<tr><th>계좌잔액</th><td>%d</td></tr>\n", account.getBalance());
     out.println("</table>");
 
     out.println("<div>");

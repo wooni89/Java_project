@@ -1,42 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='UTF-8'>
-<title>계좌개설</title>
+  <meta charset='UTF-8'>
+  <title>계좌개설</title>
 </head>
 <body>
 <h1>계좌개설</h1>
 <form action='/account/add' method="post">
-<table border="1">
-<tr>
-  <th>이름</th> <td style="width:200px;"><input type='text' name='name'></td>
-</tr>
-<tr>
-  <th>계좌번호</th> <td><input type='account_number' name='accNum'></td>
-</tr>
-<tr>
-  <th>암호</th> <td><input type='password' name='password'></td>
-</tr>
-<tr>
-  <th>은행</th> 
-  <td>
-    <select name="bankName">
-      <option value="SH">신한은행</option>
-      <option value="KB">국민은행</option>
-      <option value="BK">기업은행</option>
-      <option value="HN">하나은행</option>
-      <option value="NH">농협은행</option>
-    </select>  
-  </td>
-</tr>
-</table>
-<button>등록</button>
+  <table border="1">
+    <tr>
+      <th>비밀번호</th> <td><input type='password' name='password'></td>
+    </tr>
+  </table>
+  <button>등록</button>
 </form>
+
+<p>*새로운 계좌 번호는 자동으로 생성됩니다.</p>
+
 </body>
 </html>
-
-
-
-
-
 

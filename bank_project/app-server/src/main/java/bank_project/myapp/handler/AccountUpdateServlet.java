@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import bank_project.myapp.vo.Account;
+import bank_project.myapp.vo.Customer;
 
 @WebServlet("/account/update")
 public class AccountUpdateServlet extends HttpServlet {
@@ -18,12 +19,17 @@ public class AccountUpdateServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    Customer loginUser = (Customer) request.getSession().getAttribute("loginUser");
+    
+    if (loginUser == null) {
+      response.sendRedirect("/auth/form.html");
+      return;
+    }
+    
     Account account = new Account();
     account.setNo(Integer.parseInt(request.getParameter("no")));
-    account.setName(request.getParameter("name"));
+    account.setOwner(loginUser);
     account.setPassword(request.getParameter("password"));
-    account.setBankName(request.getParameter("bankName"));
-    account.setBalance(Integer.parseInt(request.getParameter("balance")));
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();

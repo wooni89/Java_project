@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bank_project.myapp.dao.TransactionDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="transaction" id="transactionMap">
+    <id     column="tsac_no"        property="no"/>
+    <result column="customer"       property="customer"/>
+    <result column="trade"          property="tradeType"/>
+    <result column="amount"         property="amount"/>
+    <result column="created_date"   property="createdDate"/>
+
+  <association property="acc_num" javaType="account">
+      <id     column="account_num"  property="accNum"/>
+      <result column="acc_num"      property="acc_num"/>
+  </association>
+
+  </resultMap>
+
+    <insert id = "deposit" parameterType="transaction">
+        INSERT INTO bank_transaction (acc_num, trade, amount, customer)
+        VALUES (#{acc_num.acc_num}, '입금', #{amount}, #{customer})
+    </insert>
+
+    <insert id = "withdraw" parameterType="transaction">
+        INSERT INTO bank_transaction (account_num, type, amount)
+        VALUES (#{account_num}, '출금', #{amount})
+    </insert>
+
+  <select id="findAll" resultMap="transactionMap">
+      SELECT
+          t.transac_no,
+          t.account_num,
+          t.tsac_date,
+          t.tsac_time,
+          t.type,
+          t.memo,
+          t.amount,
+          a.account_num AS account_accountNum,
+          a.balance AS account_balance
+      FROM
+         bank_transaction t INNER JOIN bank_account a ON a.account_number=t.account_num
+  </select>
+
+    <select id= "findByAccountNumber" resultMap= "transactionMap">
+        SELECT
+            t.transac_no,
+            t.account_num,
+            t.tsac_date,
+            t.tsac_time,
+            t.type,
+            t.memo,
+            t.amount,
+            a.account_number AS account_accountNum ,
+            a.balance AS account_balance
+        FROM
+            bank_transaction  as  bt INNER JOIN bank_account as ba on ba.account_number = bt.account_number
+        WHERE
+            bt.account_number = #{accountNum}
+</select>
+
+</mapper>

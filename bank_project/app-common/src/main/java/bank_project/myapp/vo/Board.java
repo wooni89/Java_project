@@ -9,17 +9,31 @@ public class Board implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  public static int boardNo = 1;
   private int no;
   private String title;
   private String content;
   private Customer writer;
   private String password;
-  private int viewCount = 0;
+  private int viewCount;
   private Timestamp createdDate;
   private int category;
   private List<AttachedFile> attachedFiles;
-  
+
+  @Override
+  public String toString() {
+    return "Board{" +
+            "no=" + no +
+            ", title='" + title + '\'' +
+            ", content='" + content + '\'' +
+            ", writer=" + writer +
+            ", password='" + password + '\'' +
+            ", viewCount=" + viewCount +
+            ", createdDate=" + createdDate +
+            ", category=" + category +
+            ", attachedFiles=" + attachedFiles +
+            '}';
+  }
+
   @Override
   public int hashCode() {
     return Objects.hash(no);

@@ -1,0 +1,7 @@
+
+g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(®’ê¨ûÿÿÿÿ8³À®„¤1
+g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8´À®„¤1
+e
+java:S2095"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(ü¢À×8¸À®„¤1
+c
+java:S1989"AHandle the "RuntimeException" thrown here in a "try/catch" block.(Ò‚Òéüÿÿÿÿ8»À®„¤1

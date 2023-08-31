@@ -15,14 +15,13 @@ import bank_project.myapp.vo.Board;
 public class BoardListServlet extends HttpServlet {
 
   private static final long serialVersionUID = 1L;
-  SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-  
-  
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    
+
+    SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+
     int category = Integer.parseInt(request.getParameter("category"));
 
     response.setContentType("text/html;charset=UTF-8");

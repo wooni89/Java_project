@@ -1,9 +1,10 @@
 package bank_project.myapp.dao;
 
-import java.util.List;
+import bank_project.myapp.vo.Customer;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import bank_project.myapp.vo.Customer;
+
+import java.util.List;
 
 public class MySQLCustomerDao implements CustomerDao {
 
@@ -26,11 +27,17 @@ public class MySQLCustomerDao implements CustomerDao {
   }
   
   @Override
-  public Customer findBy(Customer customer) {
+  public Customer findBy(String customer) {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     return sqlSession.selectOne("bank_project.myapp.dao.CustomerDao.findBy", customer);
   }
-  
+
+  @Override
+  public Customer findByEmailAndPassword(Customer customer) {
+    SqlSession sqlSession = sqlSessionFactory.openSession();
+    return sqlSession.selectOne("bank_project.myapp.dao.CustomerDao.findByEmailAndPassword", customer);
+  }
+
   @Override
   public Customer update(Customer customer) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
@@ -39,10 +46,9 @@ public class MySQLCustomerDao implements CustomerDao {
   }
   
   @Override
-  public Customer delete(Customer customer) {
+  public int delete(String customer) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    sqlSession.delete("bank_project.myapp.dao.CustomerDao.delete", customer);
-    return customer;
+    return sqlSession.delete("bank_project.myapp.dao.CustomerDao.delete", customer);
   }
   
 }

@@ -1,15 +1,16 @@
 package bank_project.myapp.handler;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.List;
+import bank_project.myapp.vo.Customer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bank_project.myapp.vo.Customer;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 @WebServlet("/customer/list")
 public class CustomerListServlet extends HttpServlet {
@@ -37,7 +38,7 @@ public class CustomerListServlet extends HttpServlet {
     out.println("</div>");
     out.println("<table border='1'>");
     out.println("<thead>");
-    out.println("  <tr><th>번호</th> <th>이름</th> <th>이메일</th> <th>연락처</th> <th>가입일</th></tr>");
+    out.println("  <tr><th>번호</th> <th>이름</th> <th>성별</th> <th>이메일</th> <th>신용등급</th> </tr>");
     out.println("</thead>");
 
     List<Customer> list = InitServlet.customerDao.findAll();
@@ -47,10 +48,10 @@ public class CustomerListServlet extends HttpServlet {
       out.printf("<tr>"
           + " <td>%d</td>"
           + " <td>%s</td>"
-          + " <td><a href='/customer/detail?email=%s'>%s</a></td>"
           + " <td>%s</td>"
-          + " <td>%s</td></tr>\n",
-           cstm.getNo(), cstm.getName(),cstm.getEmail(), cstm.getEmail(), cstm.getPhoneNumber(), dateFormatter.format(cstm.getCreatedDate()));
+          + " <td><a href='/customer/detail?email=%s'>%s</a></td>"
+          + " <td>%d</td></tr>\n",
+           cstm.getNo(), cstm.getName(),cstm.getGender() ,cstm.getEmail(), cstm.getEmail(), cstm.getCreditRating());
     }
     
     out.println("</tbody>");
