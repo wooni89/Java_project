@@ -39,10 +39,9 @@ public class MySQLCustomerDao implements CustomerDao {
   }
 
   @Override
-  public Customer update(Customer customer) {
+  public int update(Customer customer) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    sqlSession.update("bank_project.myapp.dao.CustomerDao.update", customer);
-    return customer;
+    return sqlSession.update("bank_project.myapp.dao.CustomerDao.update", customer);
   }
   
   @Override

@@ -19,6 +19,7 @@ public class LoginServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+
     Customer customer = new Customer();
     customer.setEmail(request.getParameter("email"));
     customer.setPassword(request.getParameter("password"));

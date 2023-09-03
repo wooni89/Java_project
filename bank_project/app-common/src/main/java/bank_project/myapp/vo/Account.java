@@ -71,15 +71,7 @@ public class Account implements Serializable {
     public int getBalance() {
         return balance;
     }
-
-    public void getBalancePlus(int plus) {
-
-        this.balance += plus;
-    }
-
-    public void getBalanceMinus(int minus) {
-        this.balance -= minus;
-    }
+    
 
     public void setBalance(int balance) {
         this.balance = balance;

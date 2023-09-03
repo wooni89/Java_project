@@ -32,7 +32,7 @@ public class AccountDeleteServlet extends HttpServlet {
         account.setOwner(loginUser);
 
         try {
-            if (InitServlet.accountDao.delete(account) == null) {
+            if (InitServlet.accountDao.delete(account) == 0) {
                 throw new ServletException("해당 계좌의 소유주가 아니기에 권한이 없습니다");
             } else {
                 response.sendRedirect("/account/list?accNum=" + accNum);

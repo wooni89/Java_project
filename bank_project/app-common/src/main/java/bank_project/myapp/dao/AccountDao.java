@@ -12,16 +12,16 @@ public interface AccountDao {
 
   Account findAccount(String accNum);
 
-  boolean findAccountAndPassword(Account account);
-
   Account findByAccountAndOwner(int account);
 
   String findMaxAccNum();
 
-  Account update(Account account);
+  int update(Account account);
 
-  Account delete(Account account);
+  int delete(Account account);
 
-  Account deposit(Account account);
+  int deposit(Account account, int amount);
+
+  int withdraw(Account account, int amount);
 
 }

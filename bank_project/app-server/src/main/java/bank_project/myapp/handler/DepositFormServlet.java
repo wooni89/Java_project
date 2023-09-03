@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/transaction/deposit/form")
+@WebServlet("/account/deposit/form")
 public class DepositFormServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -27,16 +27,23 @@ public class DepositFormServlet extends HttpServlet {
         out.println("<html>");
         out.println("<head>");
         out.println("<meta charset='UTF-8'>");
-        //out.println("<meta http-equiv='refresh' content='1;url=/transaction/form'>");
+
+        // 간단한 CSS 추가
+        out.println("<style>"
+                + "body {font-family: Arial, sans-serif; margin:0 auto; width:50%; padding-top:50px;}"
+                + "form {display:flex; flex-direction:column; gap:10px;} "
+                + "input[type=submit] {cursor:pointer;} "
+                + "</style>");
+
         out.println("<title>입금</title>");
         out.println("</head>");
         out.println("<body><form method='post' action='/transaction/deposit'>");
-        out.printf("계좌 번호: <td>%s</td>\n", account.getAccNum());
-        out.println("입금 금액: <input type='number' name='amount'><br>");
-        out.printf("계좌 비밀번호: <input type='password' name='password'><br>");
+        out.printf("<input type='hidden' name='accNum' value='%s'> ", account.getAccNum());
+        out.printf("계좌 번호: <strong>%s</strong> ", account.getAccNum());
+        out.print("입금 금액:<br> <input type='number' name='amount'><br>");
+        out.print("입금자명 :<br> <input type='customer' name='customer'><br>");
         out.print("<input type='submit' value='입금하기'>");
         out.print("</form></body></html>");
 
     }
 }
-

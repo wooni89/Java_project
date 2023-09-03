@@ -97,12 +97,6 @@ ALTER TABLE bank_transaction
                      tsac_no -- 거래내역id
             );
 
--- 거래내역 유니크 인덱스
-CREATE UNIQUE INDEX UIX_bank_transaction
-    ON bank_transaction ( -- 거래내역
-                         acc_num ASC -- 계좌번호
-        );
-
 ALTER TABLE bank_transaction
     MODIFY COLUMN tsac_no INTEGER NOT NULL AUTO_INCREMENT COMMENT '거래내역id';
 

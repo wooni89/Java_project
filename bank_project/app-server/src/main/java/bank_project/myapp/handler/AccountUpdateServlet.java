@@ -1,14 +1,15 @@
 package bank_project.myapp.handler;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import bank_project.myapp.vo.Account;
+import bank_project.myapp.vo.Customer;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import bank_project.myapp.vo.Account;
-import bank_project.myapp.vo.Customer;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet("/account/update")
 public class AccountUpdateServlet extends HttpServlet {
@@ -44,7 +45,7 @@ public class AccountUpdateServlet extends HttpServlet {
     out.println("<h1>계좌 변경</h1>");
 
     try {
-      if (InitServlet.accountDao.update(account) == null) {
+      if (InitServlet.accountDao.update(account) == 0) {
         out.println("<p>회원이 없습니다.</p>");
       } else {
         InitServlet.sqlSessionFactory.openSession(false).commit();

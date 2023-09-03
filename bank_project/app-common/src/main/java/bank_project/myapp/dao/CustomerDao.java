@@ -14,7 +14,7 @@ public interface CustomerDao {
 
   Customer findByEmailAndPassword(Customer customer);
   
-  Customer update(Customer customer);
+  int update(Customer customer);
   
   int delete(String customer);
   

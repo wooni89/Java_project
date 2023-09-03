@@ -40,7 +40,7 @@ public class CustomerUpdateServlet extends HttpServlet {
     out.println("<h1>회원 변경</h1>");
 
     try {
-      if (InitServlet.customerDao.update(customer) == null) {
+      if (InitServlet.customerDao.update(customer) == 0) {
         out.println("<p>회원이 없습니다.</p>");
       } else {
         InitServlet.sqlSessionFactory.openSession(false).commit();

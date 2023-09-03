@@ -42,16 +42,15 @@ public class TransactionFormServlet extends HttpServlet {
         out.printf("<h2>계좌 번호: %s</h2>", account.getAccNum());
         out.printf("<h2>거래를 선택하세요:</h2>");
         out.printf("<ul>");
-        out.printf("<li><a href='/transaction/deposit/form?accNum=%s'>입금</a></li>", account.getAccNum());
-        out.printf("<li><a href='/transaction/withdraw/form?accNum=%s'>출금</a></li>", account.getAccNum());
-        out.printf("<li><a href='/transaction/transfer/form?accNum=%s'>송금</a></li>", account.getAccNum());
-        out.printf("<li><a href='/transaction/history/form?accNum=%s'>거래내역</a></li>", account.getAccNum());
+        out.printf("<li><a href='/account/deposit/form?accNum=%s'>입금</a></li>", account.getAccNum());
+        out.printf("<li><a href='/account/withdraw/form?accNum=%s'>출금</a></li>", account.getAccNum());
+        out.printf("<li><a href='/account/transfer/form?accNum=%s'>송금</a></li>", account.getAccNum());
+        out.printf("<li><a href='/transaction/history?accNum=%s'>거래내역</a></li>", account.getAccNum());
         out.print("</ul>");
 
         // 메인으로 돌아가는 버튼 추가
         out.print("<br/><br/>");
-        out.print("<button onclick='location.href=/'>메인으로 가기</button>");
-
+        out.print("<button><a href='/'>메인으로 가기</button>");
         out.print("</body></html>");
 
     }

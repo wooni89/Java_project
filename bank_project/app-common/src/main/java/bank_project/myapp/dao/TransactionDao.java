@@ -7,11 +7,7 @@ import java.util.List;
 
 public interface TransactionDao {
 
-  void deposit(Transaction transaction);
-
-  void withdraw(Transaction transaction);
-
-  void transfer(Transaction from, Transaction to);
+  void insert(Transaction transaction);
 
   List<Transaction> findAll();
 

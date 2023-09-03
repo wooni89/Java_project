@@ -13,52 +13,45 @@
     <result column="created_date"   property="createdDate"/>
 
   <association property="acc_num" javaType="account">
-      <id     column="account_num"  property="accNum"/>
-      <result column="acc_num"      property="acc_num"/>
+      <id     column="acc_no"  property="no"/>
+      <result column="account_num"  property="accNum"/>
   </association>
 
   </resultMap>
 
-    <insert id = "deposit" parameterType="transaction">
-        INSERT INTO bank_transaction (acc_num, trade, amount, customer)
-        VALUES (#{acc_num.acc_num}, '입금', #{amount}, #{customer})
-    </insert>
-
-    <insert id = "withdraw" parameterType="transaction">
-        INSERT INTO bank_transaction (account_num, type, amount)
-        VALUES (#{account_num}, '출금', #{amount})
+    <insert id = "insert" parameterType="transaction">
+        INSERT INTO bank_transaction (acc_num ,trade, amount, customer)
+        VALUES (#{acc_num.no}, #{tradeType} ,#{amount}, #{customer})
     </insert>
 
   <select id="findAll" resultMap="transactionMap">
       SELECT
-          t.transac_no,
-          t.account_num,
-          t.tsac_date,
-          t.tsac_time,
-          t.type,
-          t.memo,
+          t.tsac_no,
+          t.acc_num,
+          t.created_date,
+          t.trade,
           t.amount,
-          a.account_num AS account_accountNum,
-          a.balance AS account_balance
+          a.acc_no,
+          a.account_num
       FROM
-         bank_transaction t INNER JOIN bank_account a ON a.account_number=t.account_num
+         bank_transaction t INNER JOIN bank_account a ON t.acc_num=a.acc_no
+
   </select>
 
     <select id= "findByAccountNumber" resultMap= "transactionMap">
         SELECT
-            t.transac_no,
-            t.account_num,
-            t.tsac_date,
-            t.tsac_time,
-            t.type,
-            t.memo,
+            t.tsac_no,
+            t.acc_num,
+            t.created_date,
+            t.trade,
             t.amount,
-            a.account_number AS account_accountNum ,
-            a.balance AS account_balance
+            t.customer,
+            a.acc_no,
+            a.account_num
         FROM
-            bank_transaction  as  bt INNER JOIN bank_account as ba on ba.account_number = bt.account_number
+            bank_transaction t INNER JOIN bank_account a ON t.acc_num=a.acc_no
         WHERE
-            bt.account_number = #{accountNum}
+            a.account_num=#{accNum}
 </select>
 
 </mapper>

@@ -62,8 +62,8 @@ public class BoardUpdateServlet extends HttpServlet {
     out.println("</head>");
     out.println("<body>");
     out.println("<h1>게시글 변경</h1>");
+    out.println("<html>");
 
-      out.println("<html>");
       try {
         InitServlet.boardDao.insert(board);
         if (attachedFiles.size() > 0) {
