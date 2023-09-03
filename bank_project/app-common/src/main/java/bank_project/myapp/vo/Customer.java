@@ -7,6 +7,9 @@ import java.util.Objects;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public static final char MALE = 'M';
+    public static final char FEMALE = 'W';
+
     private int no;
     private String name;
     private String email;
@@ -14,6 +17,7 @@ public class Customer implements Serializable {
     private char gender;
     private String address;
     private int creditRating;
+    private String photo;
 
     @Override
     public String toString() {
@@ -102,5 +106,13 @@ public class Customer implements Serializable {
 
     public void setCreditRating(int creditRating) {
         this.creditRating = creditRating;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bank_project.myapp.dao.CustomerDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="customer" id="customerMap">
+    <id     column="customer_no"  property="no"/>
+    <result column="name"         property="name"/>
+    <result column="email"        property="email"/>
+    <result column="password"     property="password"/>
+    <result column="gender"       property="gender"/>
+    <result column="address"       property="address"/>
+    <result column="credit_rating"       property="creditRating"/>
+  </resultMap>
+
+  <insert id="insert" parameterType="customer">
+    insert into bank_customer(name,email,password,gender,address,credit_rating)
+    values(#{name},#{email},sha1(#{password}),#{gender},#{address},#{creditRating})
+  </insert>
+  
+  <select id="findAll" resultMap="customerMap">
+    select
+      customer_no,
+      name,
+      gender,
+      email,
+      credit_rating
+    from
+      bank_customer
+    order by
+      customer_no
+  </select>
+  
+  <select id="findBy" parameterType="string" resultMap="customerMap">
+    SELECT
+      customer_no,
+      name,
+      email,
+      gender,
+      address,
+      credit_rating
+    FROM
+      bank_customer
+    WHERE
+      email LIKE CONCAT('%', #{email}, '%');
+  </select>
+
+  <select id="findByEmailAndPassword" parameterType="customer" resultMap="customerMap">
+    select
+      customer_no,
+      name,
+      email,
+      gender,
+      address,
+      credit_rating
+    from
+      bank_customer
+    where
+      email=#{email}
+      and password=sha1(#{password})
+  </select>
+  
+  <update id="update" parameterType="customer">
+    update bank_customer set
+      name=#{name},
+      address=#{address},
+      gender=#{gender},
+      password=sha1(#{password}),
+      credit_rating={creditRating}
+    where 
+     email=#{email}
+  </update>
+  
+  <delete id="delete" parameterType="string">
+    delete from bank_customer
+    where 
+      email=#{email}
+  </delete>
+</mapper>

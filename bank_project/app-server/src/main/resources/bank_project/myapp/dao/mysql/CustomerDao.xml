@@ -13,11 +13,12 @@
     <result column="gender"       property="gender"/>
     <result column="address"       property="address"/>
     <result column="credit_rating"       property="creditRating"/>
+    <result column="photo"        property="photo"/>
   </resultMap>
 
   <insert id="insert" parameterType="customer">
-    insert into bank_customer(name,email,password,gender,address,credit_rating)
-    values(#{name},#{email},sha1(#{password}),#{gender},#{address},#{creditRating})
+    insert into bank_customer(name,email,password,gender,address,credit_rating, photo)
+    values(#{name},#{email},sha1(#{password}),#{gender},#{address},#{creditRating}, #{photo})
   </insert>
   
   <select id="findAll" resultMap="customerMap">
@@ -26,7 +27,8 @@
       name,
       gender,
       email,
-      credit_rating
+      credit_rating,
+      photo
     from
       bank_customer
     order by
@@ -40,7 +42,8 @@
       email,
       gender,
       address,
-      credit_rating
+      credit_rating,
+      photo
     FROM
       bank_customer
     WHERE
@@ -54,7 +57,8 @@
       email,
       gender,
       address,
-      credit_rating
+      credit_rating,
+      photo
     from
       bank_customer
     where
@@ -64,12 +68,17 @@
   
   <update id="update" parameterType="customer">
     update bank_customer set
+      customer_no=#{no},
       name=#{name},
+      email=#{email},
       address=#{address},
       gender=#{gender},
       password=sha1(#{password}),
-      credit_rating={creditRating}
-    where 
+      credit_rating=#{creditRating},
+    <if test="photo != null">
+      photo=#{photo}
+    </if>
+    where
      email=#{email}
   </update>
   

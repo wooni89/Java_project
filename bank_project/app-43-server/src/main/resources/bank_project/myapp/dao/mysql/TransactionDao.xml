@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bank_project.myapp.dao.TransactionDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="transaction" id="transactionMap">
+    <id     column="tsac_no"        property="no"/>
+    <result column="customer"       property="customer"/>
+    <result column="trade"          property="tradeType"/>
+    <result column="amount"         property="amount"/>
+    <result column="created_date"   property="createdDate"/>
+
+  <association property="acc_num" javaType="account">
+      <id     column="acc_no"  property="no"/>
+      <result column="account_num"  property="accNum"/>
+  </association>
+
+  </resultMap>
+
+    <insert id = "insert" parameterType="transaction">
+        INSERT INTO bank_transaction (acc_num ,trade, amount, customer)
+        VALUES (#{acc_num.no}, #{tradeType} ,#{amount}, #{customer})
+    </insert>
+
+  <select id="findAll" resultMap="transactionMap">
+      SELECT
+          t.tsac_no,
+          t.acc_num,
+          t.created_date,
+          t.trade,
+          t.amount,
+          a.acc_no,
+          a.account_num
+      FROM
+         bank_transaction t INNER JOIN bank_account a ON t.acc_num=a.acc_no
+
+  </select>
+
+    <select id= "findByAccountNumber" resultMap= "transactionMap">
+        SELECT
+            t.tsac_no,
+            t.acc_num,
+            t.created_date,
+            t.trade,
+            t.amount,
+            t.customer,
+            a.acc_no,
+            a.account_num
+        FROM
+            bank_transaction t INNER JOIN bank_account a ON t.acc_num=a.acc_no
+        WHERE
+            a.account_num=#{accNum}
+</select>
+
+</mapper>

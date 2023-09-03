@@ -102,8 +102,9 @@
   
   <insert id="insertFiles" parameterType="board">
     insert into board_file(filepath, board_no) 
-    values 
-    <foreach collection="attachedFiles" item="file" separator=",">(#{file.filePath}, #{no})</foreach>
+    values
+    <foreach collection="attachedFiles" item="file" separator=",">
+      (#{file.filePath}, #{no})</foreach>
   </insert>
   
   <select id="findFileBy" parameterType="int" resultMap="attachedFileMap">
