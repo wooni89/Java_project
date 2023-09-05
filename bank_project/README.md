@@ -337,3 +337,8 @@
 - 오류 메시지 출력에 forward 및 refresh 사용
 - 상단 메뉴 및 하단 정보 출력에 include 사용 (header, footer 사용)
 - 등록 완료 후 목록 페이지로 이동할 때 redirect 사용
+
+## 46. 쿠키와 ServletContext 보관소 활용
+
+- 쿠키를 이용하여 로그인 할 때 입력한 이메일을 보관
+- 서블릿들이 공통으로 사용하는 객체를 ServletContext 보관소에 보관

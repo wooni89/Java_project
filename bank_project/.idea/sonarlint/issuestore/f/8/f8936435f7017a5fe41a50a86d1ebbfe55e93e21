@@ -1,26 +1,0 @@
-
-g	java:S112<"FDefine and throw a dedicated exception instead of using a generic one.(–Ï÷ôüÿÿÿÿ8°Ô•ž¦1
-e
-java:S1192"IDefine a constant instead of duplicating this literal "category" 4 times.(ÅöÓs8¶Ô•ž¦1
-e
-java:S2095B"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(ü¢À×8—Ø•ž¦1
-j
-java:S2095F"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(ÿù°™ýÿÿÿÿ8—Ø•ž¦1
-X
-java:S1854"<Remove this useless assignment to local variable "category".(ÅöÓs8˜Ø•ž¦1
-Y
-java:S1854%"7Remove this useless assignment to local variable "out".(ïô†úÿÿÿÿ8˜Ø•ž¦1
-u
-java:S1989"YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(ÅöÓs8™Ø•ž¦1
-I
-java:S1481"-Remove this unused "category" local variable.(ÅöÓs8™Ø•ž¦1
-u
-java:S1989 "SHandle the following exception that could be thrown by "sendRedirect": IOException.(™¿Êþúÿÿÿÿ8™Ø•ž¦1
-r
-java:S1989%"PHandle the following exception that could be thrown by "getWriter": IOException.(ïô†úÿÿÿÿ8™Ø•ž¦1
-J
-java:S1481%"(Remove this unused "out" local variable.(ïô†úÿÿÿÿ8™Ø•ž¦1
-[
-java:S1155>">Use isEmpty() to check whether the collection is empty or not.(ÇýÉÙ8›Ø•ž¦1
-ƒ
-java:S1989J"aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(õ…¹žûÿÿÿÿ8œØ•ž¦1

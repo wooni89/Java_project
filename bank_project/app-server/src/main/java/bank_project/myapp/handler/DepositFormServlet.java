@@ -1,5 +1,6 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.AccountDao;
 import bank_project.myapp.vo.Account;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,9 @@ public class DepositFormServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        Account account = InitServlet.accountDao.findAccount(request.getParameter("accNum"));
+        AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
+
+        Account account = accountDao.findAccount(request.getParameter("accNum"));
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();

@@ -1,7 +1,10 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.AccountDao;
+import bank_project.myapp.dao.TransactionDao;
 import bank_project.myapp.vo.Account;
 import bank_project.myapp.vo.Transaction;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,13 +23,17 @@ public class AccountTransferServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
 
+    AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
+    TransactionDao transactionDao = (TransactionDao) this.getServletContext().getAttribute("transactionDao");
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) this.getServletContext().getAttribute("sqlSessionFactory");
+
     int amount = Integer.parseInt(request.getParameter("amount"));
 
     if (amount <= 0) {
      throw new ServletException ("송금 금액은 0원 이상 입력해 주세요");
     }
 
-    Account accountFrom = InitServlet.accountDao.findAccount(request.getParameter("fromAccNum"));
+    Account accountFrom = accountDao.findAccount(request.getParameter("fromAccNum"));
     Account fromAcc = new Account(); // 1번계좌
       fromAcc.setAccNum(accountFrom.getAccNum());
     if (amount != 0) {
@@ -37,7 +44,7 @@ public class AccountTransferServlet extends HttpServlet {
       throw new ServletException ("계좌에 잔액이 부족합니다.");
     }
 
-    Account accountTo = InitServlet.accountDao.findAccount(request.getParameter("toAccNum"));
+    Account accountTo = accountDao.findAccount(request.getParameter("toAccNum"));
     Account toAcc = new Account();
     toAcc.setAccNum(accountTo.getAccNum());
     if (amount != 0) {
@@ -52,27 +59,27 @@ public class AccountTransferServlet extends HttpServlet {
     PrintWriter out = response.getWriter();
 
     try {
-    InitServlet.accountDao.withdraw(accountFrom, amount);
+    accountDao.withdraw(accountFrom, amount);
     Transaction fromTx = new Transaction();
     fromTx.setAcc_num(accountFrom);
     fromTx.setTradeType("출금(계좌이체)");
     fromTx.setAmount(amount);
     fromTx.setCustomer(accountTo.getOwner().getName());
-    InitServlet.transactionDao.insert(fromTx);
+    transactionDao.insert(fromTx);
 
-    InitServlet.accountDao.deposit(accountTo, amount);
+    accountDao.deposit(accountTo, amount);
     Transaction toTx = new Transaction();
     toTx.setAcc_num(accountTo);
     toTx.setTradeType("입금(계좌이체)");
     toTx.setAmount(amount);
     toTx.setCustomer(accountFrom.getOwner().getName());
-    InitServlet.transactionDao.insert(toTx);
+    transactionDao.insert(toTx);
 
-    InitServlet.sqlSessionFactory.openSession(false).commit();
+    sqlSessionFactory.openSession(false).commit();
     response.sendRedirect("list");
       out.printf("<p>%s 계좌로 %d원 입금 완료!</p>", toAcc.getAccNum(), amount);
     } catch (Exception e) {
-      InitServlet.sqlSessionFactory.openSession(false).rollback();
+      sqlSessionFactory.openSession(false).rollback();
       request.setAttribute("error", e);
       request.setAttribute("message", e.getMessage());
       request.setAttribute("refresh", "1;url=list");

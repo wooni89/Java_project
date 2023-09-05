@@ -1,7 +1,9 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.AccountDao;
 import bank_project.myapp.vo.Account;
 import bank_project.myapp.vo.Customer;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +24,7 @@ public class AccountAddServlet extends HttpServlet {
     Customer loginUser = (Customer) request.getSession().getAttribute("loginUser");
 
     if (loginUser == null) {
-      response.sendRedirect("/auth/form.html");
+      response.sendRedirect("/auth/form");
       return;
     }
 
@@ -32,13 +34,16 @@ public class AccountAddServlet extends HttpServlet {
     account.setPassword(request.getParameter("password"));
     account.setBalance(0);
 
+    AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) this.getServletContext().getAttribute("sqlSessionFactory");
+
     try {
-      InitServlet.accountDao.insert(account);
-      InitServlet.sqlSessionFactory.openSession(false).commit();
+      accountDao.insert(account);
+      sqlSessionFactory.openSession(false).commit();
       response.sendRedirect("list");
 
     } catch (Exception e) {
-      InitServlet.sqlSessionFactory.openSession(false).rollback();
+      sqlSessionFactory.openSession(false).rollback();
       request.setAttribute("error", e);
       request.setAttribute("message", e.getMessage());
       request.setAttribute("refresh", "1;url=list");
@@ -49,8 +54,8 @@ public class AccountAddServlet extends HttpServlet {
 
   private String generateAccountNumber() {
     try {
-
-      String maxAccNum = InitServlet.accountDao.findMaxAccNum();
+      AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
+      String maxAccNum = accountDao.findMaxAccNum();
 
       if (maxAccNum == null) {
         return "11100001";

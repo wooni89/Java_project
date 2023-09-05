@@ -1,5 +1,7 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.AccountDao;
+import bank_project.myapp.dao.TransactionDao;
 import bank_project.myapp.vo.Account;
 import bank_project.myapp.vo.Transaction;
 
@@ -22,9 +24,12 @@ public class TransactionHistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
+        TransactionDao transactionDao = (TransactionDao) this.getServletContext().getAttribute("transactionDao"); 
+
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        Account account = InitServlet.accountDao.findAccount(request.getParameter("accNum"));
+        Account account = accountDao.findAccount(request.getParameter("accNum"));
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
@@ -50,7 +55,7 @@ public class TransactionHistoryServlet extends HttpServlet {
                 + "<th>거래자명</th>"
                 + "</tr></thead><tbody>");
 
-        List<Transaction> transactions = InitServlet.transactionDao.findByAccountNumber(account);
+        List<Transaction> transactions = transactionDao.findByAccountNumber(account);
 
         for (Transaction transaction : transactions) {
             out.printf(

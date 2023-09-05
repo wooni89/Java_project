@@ -1,5 +1,6 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.CustomerDao;
 import bank_project.myapp.vo.Customer;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,9 @@ public class CustomerDetailServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    Customer customer = InitServlet.customerDao.findBy(Integer.parseInt(request.getParameter("no")));
+    CustomerDao customerDao = (CustomerDao) this.getServletContext().getAttribute("customerDao");
+
+    Customer customer = customerDao.findBy(Integer.parseInt(request.getParameter("no")));
     
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();

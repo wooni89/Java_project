@@ -1,6 +1,9 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.CustomerDao;
 import bank_project.myapp.vo.Customer;
+import bank_project.util.NcpObjectStorageService;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -22,6 +25,11 @@ public class CustomerAddServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     
+    CustomerDao customerDao = (CustomerDao) this.getServletContext().getAttribute("customerDao");
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) this.getServletContext().getAttribute("sqlSessionFactory");
+    NcpObjectStorageService ncpObjectStorageService = (NcpObjectStorageService) this.getServletContext().getAttribute("ncpObjectStorageService");
+
+
     Customer customer = new Customer();
     customer.setName(request.getParameter("name"));
     customer.setEmail(request.getParameter("email"));
@@ -32,7 +40,7 @@ public class CustomerAddServlet extends HttpServlet {
 
     Part photoPart = request.getPart("photo");
     if (photoPart.getSize() > 0) {
-      String uploadFileUrl = InitServlet.ncpObjectStorageService.uploadFile(
+      String uploadFileUrl = ncpObjectStorageService.uploadFile(
               "bank-bukit-1", "customer/", photoPart);
       customer.setPhoto(uploadFileUrl);
     }
@@ -50,12 +58,12 @@ public class CustomerAddServlet extends HttpServlet {
     out.println("<h1>회원 등록</h1>");
     
     try {
-      InitServlet.customerDao.insert(customer);
-      InitServlet.sqlSessionFactory.openSession(false).commit();
+      customerDao.insert(customer);
+      sqlSessionFactory.openSession(false).commit();
       response.sendRedirect("list");
 
     } catch (Exception e) {
-      InitServlet.sqlSessionFactory.openSession(false).rollback();
+      sqlSessionFactory.openSession(false).rollback();
       request.setAttribute("error", e);
       request.setAttribute("message", e.getMessage());
       request.setAttribute("refresh", "1;url=list");

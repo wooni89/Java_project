@@ -1,5 +1,6 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.AccountDao;
 import bank_project.myapp.vo.Account;
 import bank_project.myapp.vo.Customer;
 
@@ -20,6 +21,8 @@ public class TransactionFormServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
+
         Customer loginUser = (Customer) request.getSession().getAttribute("loginUser");
 
         if (loginUser == null) {
@@ -27,7 +30,7 @@ public class TransactionFormServlet extends HttpServlet {
             return;
         }
 
-        Account account = InitServlet.accountDao.findByAccountAndOwner(loginUser.getNo());
+        Account account = accountDao.findByAccountAndOwner(loginUser.getNo());
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();

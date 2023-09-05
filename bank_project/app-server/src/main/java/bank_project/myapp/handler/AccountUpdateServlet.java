@@ -1,7 +1,9 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.AccountDao;
 import bank_project.myapp.vo.Account;
 import bank_project.myapp.vo.Customer;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,9 +24,12 @@ public class AccountUpdateServlet extends HttpServlet {
     Customer loginUser = (Customer) request.getSession().getAttribute("loginUser");
     
     if (loginUser == null) {
-      response.sendRedirect("/auth/form.html");
+      response.sendRedirect("/auth/form");
       return;
     }
+
+    AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) this.getServletContext().getAttribute("sqlSessionFactory");
     
     Account account = new Account();
     account.setNo(Integer.parseInt(request.getParameter("no")));
@@ -32,14 +37,14 @@ public class AccountUpdateServlet extends HttpServlet {
     account.setPassword(request.getParameter("password"));
 
     try {
-      if (InitServlet.accountDao.update(account) == 0) {
+      if (accountDao.update(account) == 0) {
         throw new Exception("회원이 없습니다.");
       } else {
-        InitServlet.sqlSessionFactory.openSession(false).commit();
+        sqlSessionFactory.openSession(false).commit();
         response.sendRedirect("list");
       }
     } catch (Exception e) {
-      InitServlet.sqlSessionFactory.openSession(false).rollback();
+      sqlSessionFactory.openSession(false).rollback();
       request.setAttribute("error", e);
       request.setAttribute("message", e.getMessage());
       request.setAttribute("refresh", "1;url=list");

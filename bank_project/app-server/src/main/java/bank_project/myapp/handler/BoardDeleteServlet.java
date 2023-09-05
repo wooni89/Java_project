@@ -1,7 +1,9 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.BoardDao;
 import bank_project.myapp.vo.Board;
 import bank_project.myapp.vo.Customer;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +23,7 @@ public class BoardDeleteServlet extends HttpServlet {
     
     Customer loginUser = (Customer) request.getSession().getAttribute("loginUser");
     if (loginUser == null) {
-      response.sendRedirect("/auth/form.html");
+      response.sendRedirect("/auth/form");
       return;
     }
     
@@ -32,15 +34,18 @@ public class BoardDeleteServlet extends HttpServlet {
     b.setWriter(loginUser);
     b.setCategory(category);
 
+    BoardDao boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) this.getServletContext().getAttribute("sqlSessionFactory");
+
     try {
-      if (InitServlet.boardDao.delete(b) == 0) {
+      if (boardDao.delete(b) == 0) {
         throw new Exception("해당 번호의 게시글이 없거나 삭제 권한이 없습니다.");
       } else {
-      InitServlet.sqlSessionFactory.openSession(false).commit();
+      sqlSessionFactory.openSession(false).commit();
       response.sendRedirect("list?category=" + request.getParameter("category"));
       }
     } catch (Exception e) {
-      InitServlet.sqlSessionFactory.openSession(false).rollback();
+      sqlSessionFactory.openSession(false).rollback();
       request.setAttribute("error", e);
       request.setAttribute("message", e.getMessage());
       request.setAttribute("refresh", "2;url=list?category=" + request.getParameter("category"));

@@ -1,5 +1,6 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.AccountDao;
 import bank_project.myapp.vo.Account;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,8 @@ public class AccountListServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
+    AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -41,7 +44,7 @@ public class AccountListServlet extends HttpServlet {
     out.println("  <tr> <th>번호</th> <th>계좌번호</th> <th>이름</th> <th>계좌잔액</th></tr>");
     out.println("</thead>");
 
-    List<Account> list = InitServlet.accountDao.findAll();
+    List<Account> list = accountDao.findAll();
 
     out.println("<tbody>");
     for (Account account : list) {

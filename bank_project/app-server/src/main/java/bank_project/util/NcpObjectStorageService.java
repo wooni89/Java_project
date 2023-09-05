@@ -47,8 +47,8 @@ public class NcpObjectStorageService {
 
       s3.putObject(objectRequest);
 
-       return s3.getUrl(bucketName, dirPath + filename).toString();
-      //return filename;
+       //return s3.getUrl(bucketName, dirPath + filename).toString();
+      return filename;
 
     } catch (Exception e) {
       throw new RuntimeException("파일 업로드 오류", e);

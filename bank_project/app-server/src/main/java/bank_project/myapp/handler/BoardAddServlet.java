@@ -1,8 +1,11 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.BoardDao;
 import bank_project.myapp.vo.AttachedFile;
 import bank_project.myapp.vo.Board;
 import bank_project.myapp.vo.Customer;
+import bank_project.util.NcpObjectStorageService;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -27,9 +30,13 @@ public class BoardAddServlet extends HttpServlet {
         Customer loginUser = (Customer) request.getSession().getAttribute("loginUser");
 
         if (loginUser == null) {
-            response.sendRedirect("/auth/form.html");
+            response.sendRedirect("/auth/form");
             return;
         }
+
+        BoardDao boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
+        SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) this.getServletContext().getAttribute("sqlSessionFactory");
+        NcpObjectStorageService ncpObjectStorageService = (NcpObjectStorageService) this.getServletContext().getAttribute("ncpObjectStorageService");
 
         try {
             Board board = new Board();
@@ -43,7 +50,7 @@ public class BoardAddServlet extends HttpServlet {
             for (Part part : request.getParts()) {
                 if (part.getName().equals("files") && part.getSize() > 0) {
                     String uploadFileUrl =
-                            InitServlet.ncpObjectStorageService.uploadFile("bank-bukit-1", "board/", part);
+                            ncpObjectStorageService.uploadFile("bank-bukit-1", "board/", part);
                     AttachedFile attachedFile = new AttachedFile();
                     attachedFile.setFilePath(uploadFileUrl);
                     attachedFiles.add(attachedFile);
@@ -51,15 +58,15 @@ public class BoardAddServlet extends HttpServlet {
             }
             board.setAttachedFiles(attachedFiles);
 
-            InitServlet.boardDao.insert(board);
+            boardDao.insert(board);
             if (attachedFiles.size() > 0) {
-                InitServlet.boardDao.insertFiles(board);
+                boardDao.insertFiles(board);
             }
-            InitServlet.sqlSessionFactory.openSession(false).commit();
+            sqlSessionFactory.openSession(false).commit();
             response.sendRedirect("list?category=" + request.getParameter("category"));
 
         } catch (Exception e) {
-            InitServlet.sqlSessionFactory.openSession(false).rollback();
+            sqlSessionFactory.openSession(false).rollback();
             request.setAttribute("error", e);
             request.setAttribute("message", e.getMessage());
             request.setAttribute("refresh", "1;url=list");

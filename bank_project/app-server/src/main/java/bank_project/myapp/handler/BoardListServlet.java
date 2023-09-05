@@ -1,5 +1,6 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.BoardDao;
 import bank_project.myapp.vo.Board;
 
 import javax.servlet.ServletException;
@@ -20,6 +21,8 @@ public class BoardListServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
+    BoardDao boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
 
     SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -46,7 +49,7 @@ public class BoardListServlet extends HttpServlet {
     out.println("  <tr><th>번호</th> <th>제목</th> <th>작성자</th> <th>조회수</th> <th>등록일</th></tr>");
     out.println("</thead>");
     
-    List<Board> list = InitServlet.boardDao.findAll(category);
+    List<Board> list = boardDao.findAll(category);
 
     out.println("<tbody>");
     for (Board board : list) {

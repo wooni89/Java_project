@@ -1,6 +1,9 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.CustomerDao;
 import bank_project.myapp.vo.Customer;
+import bank_project.util.NcpObjectStorageService;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -21,6 +24,10 @@ public class CustomerUpdateServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    CustomerDao customerDao = (CustomerDao) this.getServletContext().getAttribute("customerDao");
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) this.getServletContext().getAttribute("sqlSessionFactory");
+    NcpObjectStorageService ncpObjectStorageService = (NcpObjectStorageService) this.getServletContext().getAttribute("ncpObjectStorageService");
+
     Customer customer = new Customer();
     customer.setNo(Integer.parseInt(request.getParameter("no")));
     customer.setName(request.getParameter("name"));
@@ -32,20 +39,20 @@ public class CustomerUpdateServlet extends HttpServlet {
 
     Part photoPart = request.getPart("photo");
     if (photoPart.getSize() > 0) {
-      String uploadFileUrl = InitServlet.ncpObjectStorageService.uploadFile(
+      String uploadFileUrl = ncpObjectStorageService.uploadFile(
               "bank-bukit-1", "customer/", photoPart);
       customer.setPhoto(uploadFileUrl);
     }
 
     try {
-      if (InitServlet.customerDao.update(customer) == 0) {
+      if (customerDao.update(customer) == 0) {
         throw new Exception("회원이 없습니다.");
       } else {
-        InitServlet.sqlSessionFactory.openSession(false).commit();
+        sqlSessionFactory.openSession(false).commit();
         response.sendRedirect("list");
       }
     } catch (Exception e) {
-      InitServlet.sqlSessionFactory.openSession(false).rollback();
+      sqlSessionFactory.openSession(false).rollback();
       request.setAttribute("error", e);
       request.setAttribute("message", e.getMessage());
       request.setAttribute("refresh", "1;url=list");

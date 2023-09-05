@@ -1,5 +1,6 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.AccountDao;
 import bank_project.myapp.vo.Account;
 import bank_project.myapp.vo.Customer;
 
@@ -18,6 +19,8 @@ public class HeaderServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        AccountDao accountDao = (AccountDao) this.getServletContext().getAttribute("accountDao");
+
         Customer loginUser = (Customer) request.getSession().getAttribute("loginUser");
 
         response.setContentType("text/html;charset=UTF-8");
@@ -27,7 +30,7 @@ public class HeaderServlet extends HttpServlet {
         out.println("<a href='/customer/list'>회원</a>");
         out.println("<a href='/account/list'>계좌업무</a>");
         if (loginUser != null) {
-            Account account = InitServlet.accountDao.findByAccountAndOwner(loginUser.getNo());
+            Account account = accountDao.findByAccountAndOwner(loginUser.getNo());
             if (account != null) {
                 out.printf("<a href='/transaction/form?accNum=%s'>은행업무 </a>", account.getAccNum());
             }
@@ -36,7 +39,7 @@ public class HeaderServlet extends HttpServlet {
         out.println("<a href='/board/list?category=2'>공지사항</a>");
 
         if (loginUser == null) {
-            out.println("<a href='/auth/form.html'>로그인</a>");
+            out.println("<a href='/auth/form'>로그인</a>");
         } else {
             out.printf("%s %s <a href='/auth/logout'>로그아웃</a>\n",
                     (loginUser.getPhoto() == null ? "<img style='height:40px' src='/images/avatar.png'>" :

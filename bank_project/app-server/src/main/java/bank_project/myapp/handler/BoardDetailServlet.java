@@ -1,7 +1,9 @@
 package bank_project.myapp.handler;
 
+import bank_project.myapp.dao.BoardDao;
 import bank_project.myapp.vo.AttachedFile;
 import bank_project.myapp.vo.Board;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,11 +21,14 @@ public class BoardDetailServlet extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+
+    BoardDao boardDao = (BoardDao) this.getServletContext().getAttribute("boardDao");
+    SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) this.getServletContext().getAttribute("sqlSessionFactory");
     
     int category = Integer.parseInt(request.getParameter("category"));
     int no = Integer.parseInt(request.getParameter("no"));
     
-    Board board = InitServlet.boardDao.findBy(category, no);
+    Board board = boardDao.findBy(category, no);
 
     response.setContentType("text/html;charset=UTF-8");
     PrintWriter out = response.getWriter();
@@ -78,11 +83,11 @@ public class BoardDetailServlet extends HttpServlet {
       out.println("</form>");
       try {
         board.setViewCount(board.getViewCount() + 1);
-        InitServlet.boardDao.updateCount(board);
-        InitServlet.sqlSessionFactory.openSession(false).commit();
+        boardDao.updateCount(board);
+        sqlSessionFactory.openSession(false).commit();
 
       } catch (Exception e) {
-        InitServlet.sqlSessionFactory.openSession(false).rollback();
+        sqlSessionFactory.openSession(false).rollback();
       }
     }
 
