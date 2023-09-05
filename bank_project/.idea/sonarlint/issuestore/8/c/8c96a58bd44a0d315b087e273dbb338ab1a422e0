@@ -1,9 +1,13 @@
 
-j
-java:S2095*"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(ÿù°™ıÿÿÿÿ8›õ©‚¥1
 e
 java:S2095("HUse try-with-resources or close this "SqlSession" in a "finally" clause.(ü¢À×8›õ©‚¥1
+j
+java:S2095*"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(ÿù°™ıÿÿÿÿ8›õ©‚¥1
+\
+java:S1854":Remove this useless assignment to local variable "accNum".(îœ¢ùÿÿÿÿ8ôó§¦1
 u
 java:S1989"SHandle the following exception that could be thrown by "sendRedirect": IOException.(™¿Êşúÿÿÿÿ8áõ¤1
-c
-java:S1989+"AHandle the "ServletException" thrown here in a "try/catch" block.(ò™µïûÿÿÿÿ8ãõ¤1
+M
+java:S1481"+Remove this unused "accNum" local variable.(îœ¢ùÿÿÿÿ8÷ó§¦1
+ƒ
+java:S1989."aHandle the following exceptions that could be thrown by "forward": ServletException, IOException.(õ…¹ûÿÿÿÿ8ß£î¦1

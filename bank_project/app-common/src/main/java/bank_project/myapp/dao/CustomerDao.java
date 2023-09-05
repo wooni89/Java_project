@@ -10,7 +10,7 @@ public interface CustomerDao {
   
   List<Customer> findAll();
   
-  Customer findBy(String customer);
+  Customer findBy(int no);
 
   Customer findByEmailAndPassword(Customer customer);
   

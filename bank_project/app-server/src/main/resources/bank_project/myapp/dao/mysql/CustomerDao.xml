@@ -35,7 +35,7 @@
       customer_no
   </select>
   
-  <select id="findBy" parameterType="string" resultMap="customerMap">
+  <select id="findBy" parameterType="int" resultMap="customerMap">
     SELECT
       customer_no,
       name,
@@ -47,7 +47,7 @@
     FROM
       bank_customer
     WHERE
-      email LIKE CONCAT('%', #{email}, '%');
+      customer_no=#{no}
   </select>
 
   <select id="findByEmailAndPassword" parameterType="customer" resultMap="customerMap">
@@ -68,18 +68,17 @@
   
   <update id="update" parameterType="customer">
     update bank_customer set
-      customer_no=#{no},
-      name=#{name},
-      email=#{email},
-      address=#{address},
-      gender=#{gender},
-      password=sha1(#{password}),
-      credit_rating=#{creditRating},
+      name=#{name}
+      ,email=#{email}
+      ,gender=#{gender}
+      ,password=sha1(#{password})
+      ,address=#{address}
+      ,credit_rating=#{creditRating}
     <if test="photo != null">
-      photo=#{photo}
+      ,photo=#{photo}
     </if>
     where
-     email=#{email}
+      customer_no=#{no}
   </update>
   
   <delete id="delete" parameterType="string">

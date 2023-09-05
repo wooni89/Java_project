@@ -22,7 +22,6 @@
       <id     column="board_file_no"    property="no"/>
       <result column="filepath"         property="filePath"/>
     </collection>
-    
   </resultMap>
   
   <resultMap type="attachedFile" id="attachedFileMap">

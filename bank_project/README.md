@@ -331,3 +331,9 @@
 - 네이버 클라우드의 Image Optimizer를 이용하여 썸네일 이미지 다루기
 - 네이버 클라우드의 Image Optimizer 사용
 - 고객정보 상세보기, 목록에 사진 추가
+
+## 45. forward/include/refresh/redirect 적용
+
+- 오류 메시지 출력에 forward 및 refresh 사용
+- 상단 메뉴 및 하단 정보 출력에 include 사용 (header, footer 사용)
+- 등록 완료 후 목록 페이지로 이동할 때 redirect 사용
