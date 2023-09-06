@@ -1,0 +1,23 @@
+
+k	java:S117e"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è—Ößıÿÿÿÿ
+k	java:S117f"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô²Öïÿÿÿÿÿ
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(™ÑŸ³øÿÿÿÿ
+u	java:S116$"`Rename this field "_el_expressionfactory" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õâª„
+t	java:S116%"_Rename this field "_jsp_instancemanager" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ğØ¶¾
+q
+java:S3008"[Rename this field "_jspx_dependants" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Œ»ÀÓ
+—
+java:S1186I"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼„Ñ
+—
+java:S1186L"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(åÿÏà
+h
+java:S3776O"RRefactor this method to reduce its Cognitive Complexity from 26 to the 15 allowed.(µç·
+G
+java:S1481`",Remove this unused "session" local variable.(ï±°úÿÿÿÿ
+K
+java:S1481a"0Remove this unused "application" local variable.(ğÔ«şÿÿÿÿ
+F
+java:S1481b"+Remove this unused "config" local variable.(ÊÙÜüÿÿÿÿ
+D
+java:S1481d")Remove this unused "page" local variable.(‹ä™ìşÿÿÿÿ
+D	java:S108“")Either remove or fill this block of code.(Šø½™şÿÿÿÿ
