@@ -1,0 +1,13 @@
+
+j
+java:S1192"HDefine a constant instead of duplicating this literal "viewUrl" 3 times.(ºØ¤òøÿÿÿÿ8½ğ“¢§1
+k
+java:S11925"IDefine a constant instead of duplicating this literal "category" 3 times.(¨ıúÿÿÿÿÿ8ı÷Âø¦1
+^
+java:S2095H"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(úıÓ
+]
+java:S2095L"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(ÙÃ—5
+~
+java:S1989'"bHandle the following exceptions that could be thrown by "getParts": IOException, ServletException.(Šôÿc8ì’¢§1
+T
+java:S1155E">Use isEmpty() to check whether the collection is empty or not.(ÇıÉÙ

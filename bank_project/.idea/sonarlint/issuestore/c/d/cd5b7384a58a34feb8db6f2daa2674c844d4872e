@@ -1,0 +1,12 @@
+
+`	java:S112*"FDefine and throw a dedicated exception instead of using a generic one.(ŸØ×£ùÿÿÿÿ
+k
+java:S1192$"IDefine a constant instead of duplicating this literal "category" 3 times.(û¹¼Œÿÿÿÿÿ8„²¾ø¦1
+e
+java:S2095,"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(úıÓ8’²¾ø¦1
+d
+java:S20950"HUse try-with-resources or close this "SqlSession" in a "finally" clause.(ÙÃ—58‘²¾ø¦1
+o
+java:S1989""YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(´¦‘
+{
+java:S1989$"YHandle the following exception that could be thrown by "parseInt": NumberFormatException.(û¹¼Œÿÿÿÿÿ8™²¾ø¦1

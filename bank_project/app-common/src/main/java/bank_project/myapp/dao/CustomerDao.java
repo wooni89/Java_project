@@ -16,7 +16,7 @@ public interface CustomerDao {
   
   int update(Customer customer);
   
-  int delete(String customer);
+  int delete(String email);
   
 }
 

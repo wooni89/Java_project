@@ -45,9 +45,9 @@ public class MySQLCustomerDao implements CustomerDao {
   }
   
   @Override
-  public int delete(String customer) {
+  public int delete(String email) {
     SqlSession sqlSession = sqlSessionFactory.openSession(false);
-    return sqlSession.delete("bank_project.myapp.dao.CustomerDao.delete", customer);
+    return sqlSession.delete("bank_project.myapp.dao.CustomerDao.delete", email);
   }
   
 }
