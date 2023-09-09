@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="bank_project.myapp.dao.AccountDao">
+
+  <!-- 결과 레코드의 컬럼 값을 자바 객체에 어떻게 담을 것인지 설정한다. -->
+  <resultMap type="account" id="accountMap">
+    <id     column="account_num"  property="accNum"/>
+    <result column="acc_no"       property="no"/>
+    <result column="password"     property="password"/>
+    <result column="balance"      property="balance"/>
+    <result column="created_date"   property="createdDate"/>
+
+  <association property="owner" javaType="customer">
+      <id     column="customer_no"  property="no"/>
+      <result column="name"         property="name"/>
+    </association>
+
+  </resultMap>
+
+  <insert id="insert" parameterType="account"
+          useGeneratedKeys="true" keyColumn="account_num" keyProperty="accNum">
+    insert into bank_account(account_num, password, balance, owner)
+    values(#{accNum},sha1(#{password}),#{balance}, #{owner.no})
+  </insert>
+
+  <select id="findAll" resultMap="accountMap">
+    select
+     a.acc_no,
+     a.account_num,
+     a.balance,
+     c.customer_no,
+     c.name
+    from
+      bank_account a inner join bank_customer c on a.owner = c.customer_no
+    order by
+      account_num=#{accNum}
+  </select>
+
+  <select id="findAccount" parameterType="account" resultMap="accountMap">
+      select
+          a.acc_no,
+          a.account_num,
+          a.balance,
+          c.customer_no,
+          c.name
+      from
+        bank_account a inner join bank_customer c on a.owner = c.customer_no
+      where
+        a.account_num=#{accNum}
+  </select>
+
+    <select id="findByAccountAndOwner" parameterType="int" resultMap="accountMap">
+        select
+            a.acc_no,
+            a.account_num,
+            a.balance,
+            c.customer_no,
+            c.name
+        from
+             bank_account a inner join bank_customer c on a.owner = c.customer_no
+        where
+            c.customer_no=#{customer_no}
+    </select>
+
+<select id="findMaxAccNum" resultType="string">
+    SELECT MAX(account_num) FROM bank_account
+</select>
+
+
+  <select id="findAccountAndPassword" parameterType="account" resultMap="accountMap">
+       select
+          a.acc_no,
+          a.account_num,
+          a.balance,
+          a.password,
+          c.customer_no,
+          c.name
+       from
+            bank_account a inner join bank_customer c on a.owner = c.customer_no
+	   where
+            a.account_num=${accNum} and a.password = sha1(#{password})
+  </select>
+
+  <update id="update" parameterType="account">
+    update bank_account set
+      password=sha1(#{password})
+    where
+     account_num=#{accNum}
+  </update>
+
+  <delete id="delete" parameterType="account">
+    delete from bank_account
+    where
+      account_num=#{accNum}
+  </delete>
+
+ <update id="deposit" parameterType="map">
+    update bank_account set
+      balance = balance + #{amount}
+    where
+     account_num=#{accNum.accNum}
+  </update>
+
+  <update id="withdraw" parameterType="map">
+    update bank_account set
+      balance = balance - #{amount}
+    where
+     account_num=#{accNum.accNum}
+  </update>
+
+    <update id="transfer" parameterType="map">
+        START TRANSACTION;
+        update bank_account set
+        balance = balance - #{amount}
+        where
+        account_num=#{fromAcc.accNum}
+
+        update bank_account set
+        balance = balance + #{amount}
+        where
+        account_num=#{toAcc.accNum}
+        COMMIT;
+    </update>
+
+
+</mapper>

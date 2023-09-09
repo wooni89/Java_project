@@ -1,0 +1,28 @@
+<%@ page
+        language="java"
+        pageEncoding="UTF-8"
+        contentType="text/html;charset=UTF-8"
+        trimDirectiveWhitespaces="true"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <title>계좌개설</title>
+</head>
+<body>
+<h1>계좌개설</h1>
+<form action='add' method="post">
+  <table border="1">
+    <tr>
+      <th>비밀번호</th> <td><input type='password' name='password'></td>
+    </tr>
+  </table>
+  <button>등록</button>
+</form>
+
+<p>*새로운 계좌 번호는 자동으로 생성됩니다.</p>
+
+</body>
+</html>
+
